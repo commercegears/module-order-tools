@@ -116,7 +116,7 @@ Run the backfill once after installation; orders saved later are handled by Mage
 
 ## Compatibility
 
-Magento Open Source / Adobe Commerce 2.4.7–2.4.9, PHP 8.2–8.5. Requires `softaware/module-base` ^1.2.
+Magento Open Source / Adobe Commerce 2.4.7–2.4.9, PHP 8.2–8.5. Requires `softaware/module-core` ^1.2.
 No storefront code (numbers appear wherever Magento shows them, on Luma and Hyvä alike).
 
 ## Limitations

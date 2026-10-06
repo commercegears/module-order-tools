@@ -3,7 +3,7 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="Softaware_Base::base">
+                <resource id="Softaware_Core::core">
                     <resource id="Softaware_OrderTools::order_tools" title="Order Tools" translate="title" sortOrder="60">
                         <resource id="Softaware_OrderTools::delete" title="Delete Orders" translate="title" sortOrder="10"/>
                         <resource id="Softaware_OrderTools::deleted_log" title="View Deleted Orders Log" translate="title" sortOrder="20"/>
