@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <listingToolbar name="listing_top">
+        <massaction name="listing_massaction">
+            <action name="sot_mark_test" class="Softaware\OrderTools\Ui\Component\MassAction\GuardedAction">
+                <argument name="data" xsi:type="array">
+                    <item name="feature" xsi:type="string">test_flag</item>
+                </argument>
+                <settings>
+                    <url path="softaware_ordertools/order/massMarkTest"/>
+                    <type>sot_mark_test</type>
+                    <label translate="true">Mark as Test Order</label>
+                </settings>
+            </action>
+            <action name="sot_unmark_test" class="Softaware\OrderTools\Ui\Component\MassAction\GuardedAction">
+                <argument name="data" xsi:type="array">
+                    <item name="feature" xsi:type="string">test_flag</item>
+                </argument>
+                <settings>
+                    <url path="softaware_ordertools/order/massUnmarkTest"/>
+                    <type>sot_unmark_test</type>
+                    <label translate="true">Remove Test Order Mark</label>
+                </settings>
+            </action>
+        </massaction>
+    </listingToolbar>
+    <columns name="sales_order_columns">
+        <column name="sot_items" class="Softaware\OrderTools\Ui\Component\Listing\Column\OptionalColumn">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Items</label>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        <column name="sot_coupon_code" class="Softaware\OrderTools\Ui\Component\Listing\Column\OptionalColumn">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Coupon Code</label>
+            </settings>
+        </column>
+        <column name="sot_shipping_country" class="Softaware\OrderTools\Ui\Component\Listing\Column\OptionalColumn" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Softaware\OrderTools\Model\Source\Country"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Shipping Country</label>
+            </settings>
+        </column>
+        <column name="sot_customer_note" class="Softaware\OrderTools\Ui\Component\Listing\Column\OptionalColumn">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Order Comment</label>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        <column name="sot_is_test" class="Softaware\OrderTools\Ui\Component\Listing\Column\OptionalColumn" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Magento\Config\Model\Config\Source\Yesno"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Test Order</label>
+            </settings>
+        </column>
+    </columns>
+</listing>

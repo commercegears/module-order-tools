@@ -14,10 +14,34 @@
         <plugin name="softaware_ordertools_same_as_order" type="Softaware\OrderTools\Plugin\SameAsOrderNumberPlugin"/>
     </type>
 
+    <!-- Order grid columns, kept in sync by Magento's order grid indexer -->
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="sot_items" xsi:type="object">Softaware\OrderTools\Model\Grid\ItemsExpression</item>
+                <item name="sot_coupon_code" xsi:type="string">sales_order.coupon_code</item>
+                <item name="sot_shipping_country" xsi:type="string">sales_shipping_address.country_id</item>
+                <item name="sot_customer_note" xsi:type="string">sales_order.customer_note</item>
+                <item name="sot_is_test" xsi:type="string">sales_order.sot_is_test</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Softaware\OrderTools\Model\Grid\Backfill">
+        <arguments>
+            <argument name="orderGrid" xsi:type="object">Magento\Sales\Model\ResourceModel\Order\Grid</argument>
+        </arguments>
+    </type>
+    <type name="Softaware\OrderTools\Model\TestFlag">
+        <arguments>
+            <argument name="orderGrid" xsi:type="object">Magento\Sales\Model\ResourceModel\Order\Grid</argument>
+        </arguments>
+    </type>
+
     <type name="Magento\Framework\Console\CommandListInterface">
         <arguments>
             <argument name="commands" xsi:type="array">
                 <item name="softaware_ordertools_sequence_show" xsi:type="object">Softaware\OrderTools\Console\Command\SequenceShowCommand</item>
+                <item name="softaware_ordertools_grid_backfill" xsi:type="object">Softaware\OrderTools\Console\Command\GridBackfillCommand</item>
             </argument>
         </arguments>
     </type>
