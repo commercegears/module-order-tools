@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Softaware_Base::base">
+                    <resource id="Softaware_OrderTools::order_tools" title="Order Tools" translate="title" sortOrder="60">
+                        <resource id="Softaware_OrderTools::delete" title="Delete Orders" translate="title" sortOrder="10"/>
+                        <resource id="Softaware_OrderTools::deleted_log" title="View Deleted Orders Log" translate="title" sortOrder="20"/>
+                        <resource id="Softaware_OrderTools::test_flag" title="Mark Test Orders" translate="title" sortOrder="30"/>
+                        <resource id="Softaware_OrderTools::config" title="Settings: Order Grid and Deleting" translate="title" sortOrder="40"/>
+                        <resource id="Softaware_OrderTools::config_numbers" title="Settings: Document Numbers" translate="title" sortOrder="50"/>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

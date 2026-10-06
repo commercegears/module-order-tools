@@ -1,0 +1,55 @@
+{
+    "softaware_ordertools_counter": {
+        "column": {
+            "entity_type": true,
+            "pattern": true,
+            "period": true,
+            "counter_value": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "softaware_ordertools_deleted_order": {
+        "column": {
+            "log_id": true,
+            "order_id": true,
+            "increment_id": true,
+            "store_id": true,
+            "status": true,
+            "state": true,
+            "grand_total": true,
+            "order_currency_code": true,
+            "customer_email": true,
+            "is_test": true,
+            "documents": true,
+            "order_created_at": true,
+            "admin_user_id": true,
+            "admin_username": true,
+            "ip": true,
+            "deleted_at": true
+        },
+        "index": {
+            "SOFTAWARE_ORDERTOOLS_DELETED_ORDER_INCREMENT_ID": true,
+            "SOFTAWARE_ORDERTOOLS_DELETED_ORDER_DELETED_AT": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "sales_order": {
+        "column": {
+            "sot_is_test": true
+        }
+    },
+    "sales_order_grid": {
+        "column": {
+            "sot_items": true,
+            "sot_coupon_code": true,
+            "sot_shipping_country": true,
+            "sot_customer_note": true,
+            "sot_is_test": true
+        }
+    }
+}

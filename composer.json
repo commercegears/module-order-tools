@@ -1,0 +1,26 @@
+{
+    "name": "softaware/module-order-tools",
+    "description": "Order tools for Magento 2: custom order, invoice, shipment and credit memo numbers, extra order grid columns, test order flag and guarded order deletion with an audit log.",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "require": {
+        "php": "~8.2.0||~8.3.0||~8.4.0||~8.5.0",
+        "magento/framework": "~103.0.7",
+        "softaware/module-base": "^1.2",
+        "magento/module-backend": "*",
+        "magento/module-config": "*",
+        "magento/module-directory": "*",
+        "magento/module-sales": "*",
+        "magento/module-sales-sequence": "*",
+        "magento/module-store": "*",
+        "magento/module-ui": "*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Softaware\\OrderTools\\": ""
+        }
+    }
+}
