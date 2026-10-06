@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Document numbers -->
+    <type name="Magento\SalesSequence\Model\Manager">
+        <plugin name="softaware_ordertools_custom_numbers" type="Softaware\OrderTools\Plugin\SequenceManagerPlugin"/>
+    </type>
+    <type name="Magento\Sales\Model\ResourceModel\Order\Invoice">
+        <plugin name="softaware_ordertools_same_as_order" type="Softaware\OrderTools\Plugin\SameAsOrderNumberPlugin"/>
+    </type>
+    <type name="Magento\Sales\Model\ResourceModel\Order\Shipment">
+        <plugin name="softaware_ordertools_same_as_order" type="Softaware\OrderTools\Plugin\SameAsOrderNumberPlugin"/>
+    </type>
+    <type name="Magento\Sales\Model\ResourceModel\Order\Creditmemo">
+        <plugin name="softaware_ordertools_same_as_order" type="Softaware\OrderTools\Plugin\SameAsOrderNumberPlugin"/>
+    </type>
+
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="softaware_ordertools_sequence_show" xsi:type="object">Softaware\OrderTools\Console\Command\SequenceShowCommand</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
