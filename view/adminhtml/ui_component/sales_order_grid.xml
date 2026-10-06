@@ -22,6 +22,20 @@
                     <label translate="true">Remove Test Order Mark</label>
                 </settings>
             </action>
+            <action name="sot_delete" class="Softaware\OrderTools\Ui\Component\MassAction\GuardedAction">
+                <argument name="data" xsi:type="array">
+                    <item name="feature" xsi:type="string">delete</item>
+                </argument>
+                <settings>
+                    <confirm>
+                        <title translate="true">Delete Orders Permanently</title>
+                        <message translate="true">Permanently delete the selected orders with their invoices, shipments and credit memos? This cannot be undone. Stock, refunds and reward points are not restored. Only orders with an allowed status are deleted, at most 200 at a time.</message>
+                    </confirm>
+                    <url path="softaware_ordertools/order/massDelete"/>
+                    <type>sot_delete</type>
+                    <label translate="true">Delete Permanently</label>
+                </settings>
+            </action>
         </massaction>
     </listingToolbar>
     <columns name="sales_order_columns">

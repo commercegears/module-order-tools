@@ -37,6 +37,28 @@
         </arguments>
     </type>
 
+    <!-- Deleted orders log grid -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="softaware_ordertools_deleted_listing_data_source" xsi:type="string">Softaware\OrderTools\Model\ResourceModel\DeletedOrder\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Softaware\OrderTools\Model\ResourceModel\DeletedOrder\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">softaware_ordertools_deleted_order</argument>
+            <argument name="resourceModel" xsi:type="string">Softaware\OrderTools\Model\ResourceModel\DeletedOrder</argument>
+            <argument name="identifierName" xsi:type="string">log_id</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Softaware\OrderTools\Model\DeleteMessages">
+        <arguments>
+            <argument name="authSession" xsi:type="object">Magento\Backend\Model\Auth\Session\Proxy</argument>
+        </arguments>
+    </type>
+
     <type name="Magento\Framework\Console\CommandListInterface">
         <arguments>
             <argument name="commands" xsi:type="array">
