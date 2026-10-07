@@ -19,7 +19,7 @@
             <updateUrl path="mui/index/render"/>
         </settings>
         <aclResource>Softaware_OrderTools::deleted_log</aclResource>
-        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="softaware_ordertools_deleted_listing_data_source">
+        <dataProvider class="Softaware\OrderTools\Ui\DataProvider\DeletedOrderDataProvider" name="softaware_ordertools_deleted_listing_data_source">
             <settings>
                 <requestFieldName>id</requestFieldName>
                 <primaryFieldName>log_id</primaryFieldName>
@@ -32,6 +32,7 @@
         </settings>
         <bookmark name="bookmarks"/>
         <columnsControls name="columns_controls"/>
+        <filterSearch name="fulltext"/>
         <exportButton name="export_button" class="Softaware\OrderTools\Ui\Component\CsvExportButton"/>
         <filters name="listing_filters"/>
         <paging name="listing_paging"/>
@@ -41,7 +42,7 @@
             <settings>
                 <filter>textRange</filter>
                 <label translate="true">ID</label>
-                <sorting>desc</sorting>
+                <visible>false</visible>
             </settings>
         </column>
         <column name="deleted_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="20">
@@ -49,6 +50,7 @@
                 <filter>dateRange</filter>
                 <dataType>date</dataType>
                 <label translate="true">Deleted At</label>
+                <sorting>desc</sorting>
             </settings>
         </column>
         <column name="increment_id" sortOrder="30">
@@ -61,6 +63,7 @@
             <settings>
                 <filter>textRange</filter>
                 <label translate="true">Order ID</label>
+                <visible>false</visible>
             </settings>
         </column>
         <column name="store_id" class="Magento\Store\Ui\Component\Listing\Column\Store" sortOrder="50">
@@ -70,7 +73,7 @@
                 <label translate="true">Store View</label>
             </settings>
         </column>
-        <column name="status" sortOrder="60">
+        <column name="status" class="Softaware\OrderTools\Ui\Component\Listing\Column\OrderStatus" sortOrder="60">
             <settings>
                 <filter>text</filter>
                 <label translate="true">Status</label>
@@ -86,9 +89,10 @@
             <settings>
                 <filter>text</filter>
                 <label translate="true">Currency</label>
+                <visible>false</visible>
             </settings>
         </column>
-        <column name="customer_email" sortOrder="90">
+        <column name="customer_email" class="Softaware\OrderTools\Ui\Component\Listing\Column\CustomerEmail" sortOrder="90">
             <settings>
                 <filter>text</filter>
                 <label translate="true">Customer Email</label>
@@ -113,6 +117,7 @@
                 <filter>dateRange</filter>
                 <dataType>date</dataType>
                 <label translate="true">Order Date</label>
+                <visible>false</visible>
             </settings>
         </column>
         <column name="admin_username" sortOrder="130">
@@ -125,6 +130,7 @@
             <settings>
                 <filter>text</filter>
                 <label translate="true">IP Address</label>
+                <visible>false</visible>
             </settings>
         </column>
     </columns>

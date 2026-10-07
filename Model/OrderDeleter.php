@@ -170,6 +170,14 @@ class OrderDeleter
     }
 
     /**
+     * Value stored in the log instead of the customer email when the settings ask for a hash.
+     */
+    public static function hashEmail(string $email): string
+    {
+        return 'sha256:' . hash('sha256', mb_strtolower(trim($email)));
+    }
+
+    /**
      * @param OrderInterface&Order $order
      * @param string[] $documents
      */
@@ -177,7 +185,7 @@ class OrderDeleter
     {
         $email = trim((string)$order->getCustomerEmail());
         if ($email !== '' && $this->config->getEmailInLog() === Config::EMAIL_HASH) {
-            $email = 'sha256:' . hash('sha256', mb_strtolower($email));
+            $email = self::hashEmail($email);
         }
         return [
             'order_id' => (int)$order->getEntityId(),

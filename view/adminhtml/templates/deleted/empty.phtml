@@ -1,0 +1,40 @@
+<?php
+/**
+ * Softaware Order Tools
+ *
+ * Shown instead of the log grid while no order has been deleted.
+ *
+ * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ *
+ * @var \Magento\Backend\Block\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ * @var \Softaware\OrderTools\ViewModel\DeletedLog $viewModel
+ */
+$viewModel = $block->getData('view_model');
+$authorization = $block->getAuthorization();
+$canConfigure = $authorization->isAllowed('Softaware_OrderTools::config');
+$canSeeOrders = $authorization->isAllowed('Magento_Sales::sales_order');
+$enabled = $viewModel->isDeleteEnabled();
+$statuses = $viewModel->getDeletableStatusLabels();
+$settingsUrl = $block->getUrl('adminhtml/system_config/edit', ['section' => 'softaware_ordertools']);
+?>
+<div class="sot-empty" role="status">
+    <h2 class="sot-empty__title"><?= $escaper->escapeHtml(__('No orders have been deleted')) ?></h2>
+    <?php if (!$enabled): ?>
+        <p class="sot-empty__text"><?= $escaper->escapeHtml(__('Deleting orders is switched off (the default). When it is on, orders with an allowed status can be deleted permanently from Sales > Orders, and every deletion is recorded here: order number, totals, documents, admin user and time.')) ?></p>
+    <?php elseif ($statuses): ?>
+        <p class="sot-empty__text"><?= $escaper->escapeHtml(__('Orders with the status %1 can be deleted from Sales > Orders (Actions > Delete Permanently) or with the button on the order page. Every deletion is recorded here.', implode(', ', $statuses))) ?></p>
+    <?php else: ?>
+        <p class="sot-empty__text"><?= $escaper->escapeHtml(__('Deleting orders is switched on, but no order status is allowed yet. Choose the statuses under Only Orders With These Statuses in the settings.')) ?></p>
+    <?php endif; ?>
+    <div class="sot-empty__actions">
+        <?php if ($enabled && $statuses && $canSeeOrders): ?>
+            <a class="action-primary" href="<?= $escaper->escapeUrl($block->getUrl('sales/order/index')) ?>"><span><?= $escaper->escapeHtml(__('Go to Orders')) ?></span></a>
+            <?php if ($canConfigure): ?>
+                <a class="action-secondary" href="<?= $escaper->escapeUrl($settingsUrl) ?>"><span><?= $escaper->escapeHtml(__('Settings')) ?></span></a>
+            <?php endif; ?>
+        <?php elseif ($canConfigure): ?>
+            <a class="action-primary" href="<?= $escaper->escapeUrl($settingsUrl) ?>"><span><?= $escaper->escapeHtml(__('Open Settings')) ?></span></a>
+        <?php endif; ?>
+    </div>
+</div>
