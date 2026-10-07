@@ -16,7 +16,7 @@ use Softaware\OrderTools\Model\Config;
 
 /**
  * "Delete Permanently" button on the order page, shown only when deleting is allowed for the user and the order's
- * status. Sends a POST with the form key after a confirmation.
+ * status. Sends a POST with the form key after a confirmation dialog (view/adminhtml/web/js/delete-order.js).
  */
 class OrderViewDeleteButton
 {
@@ -41,18 +41,26 @@ class OrderViewDeleteButton
         if (!$order || !$order->getId() || !$this->config->isStatusDeletable((string)$order->getStatus())) {
             return null;
         }
-        $message = $this->escaper->escapeJs($this->escaper->escapeHtml(__(
-            'Permanently delete order #%1 with its invoices, shipments and credit memos? This cannot be undone. Stock, refunds and reward points are not restored.',
-            $order->getIncrementId()
-        )));
-        $url = $this->escaper->escapeJs($subject->getUrl('softaware_ordertools/order/delete'));
-        $data = '{data: {order_id: ' . (int)$order->getId() . '}}';
         $subject->addButton(
             'sot_delete',
             [
                 'label' => __('Delete Permanently'),
                 'class' => 'delete',
-                'onclick' => "deleteConfirm('{$message}', '{$url}', {$data})",
+                'data_attribute' => [
+                    'mage-init' => [
+                        'Softaware_OrderTools/js/delete-order' => [
+                            'url' => $subject->getUrl('softaware_ordertools/order/delete'),
+                            'orderId' => (int)$order->getId(),
+                            'title' => (string)__('Delete Order Permanently'),
+                            'message' => $this->escaper->escapeHtml(__(
+                                'Permanently delete order #%1 with its invoices, shipments and credit memos? This cannot be undone. Stock, refunds and reward points are not restored.',
+                                $order->getIncrementId()
+                            )),
+                            'cancelLabel' => (string)__('Cancel'),
+                            'confirmLabel' => (string)__('Delete Permanently'),
+                        ],
+                    ],
+                ],
             ],
             0,
             -10

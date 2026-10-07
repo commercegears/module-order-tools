@@ -19,7 +19,7 @@
                 <settings>
                     <url path="softaware_ordertools/order/massUnmarkTest"/>
                     <type>sot_unmark_test</type>
-                    <label translate="true">Remove Test Order Mark</label>
+                    <label translate="true">Unmark Test Order</label>
                 </settings>
             </action>
             <action name="sot_delete" class="Softaware\OrderTools\Ui\Component\MassAction\GuardedAction">
