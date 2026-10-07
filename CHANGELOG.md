@@ -1,5 +1,29 @@
 # Changelog
 
+## 1.2.0 (2026-10-07)
+
+### Added
+
+- Deleted Orders Log: keyword search by order number, admin user or customer email. An email address also finds
+  entries where the email was stored as a hash, so you can check whether a given customer's order was deleted.
+
+### Changed
+
+- Deleted Orders Log: a one-line introduction above the grid; while nothing has been deleted, an explanation
+  instead of an empty table that says whether deleting is switched on and which statuses can be deleted, with
+  "Go to Orders" / "Open Settings". Fewer default columns (ID, order ID, currency, order date and IP address are
+  under Columns), newest deletions first by Deleted At, status labels instead of status codes, hashed customer
+  emails shown shortened (the CSV export keeps the codes and the full value).
+- Order grid: the mass action "Remove Test Order Mark" is now "Unmark Test Order" (fits the actions menu).
+- Order page: "Delete Permanently" opens a titled confirmation dialog ("Delete Order Permanently") whose button
+  says "Delete Permanently" instead of "OK"; no inline JavaScript on the button.
+- Settings: the two Order Tools sections sit next to each other in the Softaware tab; General, Next Numbers and
+  Order Numbers open first; every comment names the default; shorter wording for Enabled and Allow Deleting
+  Orders; Prefix and Suffix can be restored to the default and are checked for 20 characters in the browser.
+- Next Numbers table: aligned cells (it used to inherit the form's field padding), "Last used" instead of "last",
+  a warning when Order Tools is switched off, and the styles come from a small module CSS file that is loaded only
+  on this settings section.
+
 ## 1.1.0 (2026-10-06)
 
 ### Changed

@@ -50,7 +50,7 @@ so they are not duplicated. Grid columns are prefixed `sot_`.
 
 ### Test order flag
 
-Mass actions **Mark as Test Order** / **Remove Test Order Mark** and a **Test Order** column with filter, so test
+Mass actions **Mark as Test Order** / **Unmark Test Order** and a **Test Order** column with filter, so test
 orders are easy to find (and, once cancelled, to delete). Off by default.
 
 ### Deleting orders (off by default)
@@ -68,9 +68,10 @@ orders are easy to find (and, once cancelled, to delete). Off by default.
   order are kept by Magento (unlinked from the order). Sales reports keep their aggregated figures until refreshed.
 - **Deleted Orders Log** (Softaware > Order Tools > Deleted Orders Log): order number, order ID, store view, status,
   grand total, currency, customer email (stored as a SHA-256 hash by default, or in clear), test order flag, the
-  deleted document numbers, order date, admin user, IP address and time. Read-only, with filters and a CSV export
-  (values that a spreadsheet would run as a formula are prefixed with an apostrophe). Entries cannot be deleted
-  from the admin.
+  deleted document numbers, order date, admin user, IP address and time. Read-only, with keyword search (order
+  number, admin user or customer email; an email address also finds entries stored as a hash), filters and a CSV
+  export (values that a spreadsheet would run as a formula are prefixed with an apostrophe). Entries cannot be
+  deleted from the admin. While nothing has been deleted the page explains how deleting is set up.
 
 ## Where in the admin
 
