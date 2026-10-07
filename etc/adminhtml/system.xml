@@ -1,17 +1,18 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <section id="softaware_ordertools" translate="label" sortOrder="60" showInDefault="1" showInWebsite="0" showInStore="0">
+        <section id="softaware_ordertools" translate="label" sortOrder="61" showInDefault="1" showInWebsite="0" showInStore="0">
             <class>separator-top</class>
             <label>Order Tools</label>
             <tab>softaware</tab>
             <resource>Softaware_OrderTools::config</resource>
             <group id="general" translate="label" sortOrder="10" showInDefault="1">
                 <label>General</label>
+                <attribute type="expanded">1</attribute>
                 <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" canRestore="1">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>When off, Magento's own document numbers are used, the extra grid columns and actions are hidden and orders cannot be deleted. Each feature below also has its own switch (all off by default).</comment>
+                    <comment>Master switch. When off, Magento's own document numbers are used, the extra grid columns and actions are hidden and orders cannot be deleted. Each feature also has its own switch (all off by default). Default: Yes.</comment>
                 </field>
             </group>
             <group id="grid" translate="label" sortOrder="20" showInDefault="1">
@@ -20,12 +21,12 @@
                     <label>Extra Columns</label>
                     <source_model>Softaware\OrderTools\Model\Source\GridColumns</source_model>
                     <can_be_empty>1</can_be_empty>
-                    <comment><![CDATA[Adds these columns (with filters) to Sales &gt; Orders. Payment method, shipping information and customer group are already available in Magento's own "Columns" menu. For orders placed before the module was installed run <code>bin/magento softaware:order-tools:grid:backfill</code> once.]]></comment>
+                    <comment><![CDATA[Adds these columns (with filters) to Sales &gt; Orders. Payment method, shipping information and customer group are already available in Magento's own "Columns" menu. For orders placed before the module was installed run <code>bin/magento softaware:order-tools:grid:backfill</code> once. Default: none.]]></comment>
                 </field>
                 <field id="test_flag" translate="label comment" type="select" sortOrder="20" showInDefault="1" canRestore="1">
                     <label>Test Order Flag</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>Adds a "Test Order" column and the mass actions "Mark as Test Order" / "Remove Test Order Mark", so test orders are easy to find (and, once cancelled, to delete).</comment>
+                    <comment>Adds a "Test Order" column and the mass actions "Mark as Test Order" / "Unmark Test Order", so test orders are easy to find (and, once cancelled, to delete). Default: No.</comment>
                 </field>
             </group>
             <group id="delete" translate="label" sortOrder="30" showInDefault="1">
@@ -33,7 +34,7 @@
                 <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" canRestore="1">
                     <label>Allow Deleting Orders</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment><![CDATA[Adds "Delete Permanently" to the order grid and the order page. The order is removed with its invoices, shipments, credit memos, payment, transactions, addresses, comments and tax rows. This cannot be undone and nothing is restored (no stock, no refunds, no reward points). Admin users also need the role resource Softaware &gt; Order Tools &gt; Delete Orders. Every deletion is recorded in the Deleted Orders Log.]]></comment>
+                    <comment><![CDATA[Adds "Delete Permanently" to the order grid actions and the order page. The order is removed with all its documents, payments, addresses and comments; this cannot be undone and nothing is restored (stock, refunds, reward points). Admin roles also need Softaware &gt; Order Tools &gt; Delete Orders. Every deletion is recorded in the Deleted Orders Log. Default: No.]]></comment>
                 </field>
                 <field id="statuses" translate="label comment" type="multiselect" sortOrder="20" showInDefault="1" canRestore="1">
                     <label>Only Orders With These Statuses</label>
@@ -45,55 +46,60 @@
                 <field id="customer_email" translate="label comment" type="select" sortOrder="30" showInDefault="1" canRestore="1">
                     <label>Customer Email in the Log</label>
                     <source_model>Softaware\OrderTools\Model\Source\EmailInLog</source_model>
-                    <comment>The hash lets you check whether a given customer's order was deleted without keeping the address, which suits deletions made for data-protection requests.</comment>
+                    <comment>The hash lets you check whether a given customer's order was deleted without keeping the address, which suits deletions made for data-protection requests. Default: Store a hash only.</comment>
                     <depends><field id="enabled">1</field></depends>
                 </field>
             </group>
         </section>
-        <section id="softaware_ordertools_numbers" translate="label" sortOrder="61" showInDefault="1" showInWebsite="1" showInStore="1">
+        <section id="softaware_ordertools_numbers" translate="label" sortOrder="62" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Order Tools: Document Numbers</label>
             <tab>softaware</tab>
             <resource>Softaware_OrderTools::config_numbers</resource>
             <group id="preview" translate="label comment" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Next Numbers</label>
-                <comment>Next number of each document type per store view, with the saved settings. Custom numbers need Stores &gt; Configuration &gt; Softaware &gt; Order Tools &gt; Enabled.</comment>
+                <attribute type="expanded">1</attribute>
+                <comment>The next number of each document type per store view, based on the saved settings (save to update). Custom numbers also need Order Tools &gt; General &gt; Enabled.</comment>
                 <field id="table" type="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <frontend_model>Softaware\OrderTools\Block\Adminhtml\System\Config\NumberPreview</frontend_model>
                 </field>
             </group>
             <group id="order" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Order Numbers</label>
+                <attribute type="expanded">1</attribute>
                 <field id="mode" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Numbering</label>
                     <source_model>Softaware\OrderTools\Model\Source\OrderNumberMode</source_model>
-                    <comment>Applies to new documents only. Existing numbers never change.</comment>
+                    <comment>Applies to new documents only. Existing numbers never change. Default: Magento default.</comment>
                 </field>
-                <field id="prefix" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="prefix" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Prefix</label>
                     <backend_model>Softaware\OrderTools\Model\Config\Backend\Affix</backend_model>
-                    <comment><![CDATA[For example <code>WEB-{yy}-</code>. Placeholders: <code>{store_id}</code> <code>{yyyy}</code> <code>{yy}</code> <code>{mm}</code> <code>{dd}</code>. Otherwise letters, digits, "-", "_" and "." only, up to 20 characters. Store views with the same prefix and suffix share one counter.]]></comment>
+                    <comment><![CDATA[For example <code>WEB-{yy}-</code>. Placeholders: <code>{store_id}</code> <code>{yyyy}</code> <code>{yy}</code> <code>{mm}</code> <code>{dd}</code>. Otherwise letters, digits, "-", "_" and "." only, up to 20 characters. Store views with the same prefix and suffix share one counter. Default: empty.]]></comment>
+                    <validate>validate-length maximum-length-20</validate>
                     <depends><field id="mode">custom</field></depends>
                 </field>
-                <field id="suffix" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="suffix" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Suffix</label>
                     <backend_model>Softaware\OrderTools\Model\Config\Backend\Affix</backend_model>
-                    <comment>Same rules as the prefix. Usually empty.</comment>
+                    <comment>Same rules as the prefix. Default: empty.</comment>
+                    <validate>validate-length maximum-length-20</validate>
                     <depends><field id="mode">custom</field></depends>
                 </field>
                 <field id="length" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Minimum Counter Length</label>
                     <validate>required-entry validate-digits validate-digits-range digits-range-1-10</validate>
-                    <comment>The counter is padded with leading zeros to this length (1-10), e.g. 6 gives 000123.</comment>
+                    <comment>The counter is padded with leading zeros to this length (1-10), e.g. 6 gives 000123. Default: 6.</comment>
                     <depends><field id="mode">custom</field></depends>
                 </field>
                 <field id="start" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Start Value</label>
                     <validate>required-entry validate-digits validate-digits-range digits-range-0-999999999</validate>
-                    <comment>First counter value. Raising it later makes the counter jump to it; lowering it has no effect on a counter that is already running.</comment>
+                    <comment>First counter value. Raising it later makes the counter jump to it; lowering it has no effect on a counter that is already running. Default: 1.</comment>
                     <depends><field id="mode">custom</field></depends>
                 </field>
                 <field id="step" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Increment Step</label>
+                    <comment>How much the counter goes up per document (1-1000). Default: 1.</comment>
                     <validate>required-entry validate-digits validate-digits-range digits-range-1-1000</validate>
                     <depends><field id="mode">custom</field></depends>
                 </field>
@@ -101,7 +107,7 @@
                     <label>Restart Counter</label>
                     <source_model>Softaware\OrderTools\Model\Source\CounterReset</source_model>
                     <backend_model>Softaware\OrderTools\Model\Config\Backend\CounterReset</backend_model>
-                    <comment><![CDATA[The counter restarts at the start value only if the number contains the period: <code>{yyyy}</code> or <code>{yy}</code> for every year, plus <code>{mm}</code> for every month. Otherwise it keeps counting, so numbers never repeat. Default scope only.]]></comment>
+                    <comment><![CDATA[The counter restarts at the start value only if the number contains the period: <code>{yyyy}</code> or <code>{yy}</code> for every year, plus <code>{mm}</code> for every month. Otherwise it keeps counting, so numbers never repeat. Default scope only. Default: Never.]]></comment>
                     <depends><field id="mode">custom</field></depends>
                 </field>
             </group>
@@ -110,34 +116,37 @@
                 <field id="mode" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Numbering</label>
                     <source_model>Softaware\OrderTools\Model\Source\DocumentNumberMode</source_model>
-                    <comment>Applies to new documents only. Existing numbers never change. "Same as the order number" uses the order number, with -1, -2, ... for further documents of the same order.</comment>
+                    <comment>Applies to new documents only. Existing numbers never change. "Same as the order number" uses the order number, with -1, -2, ... for further documents of the same order. Default: Magento default.</comment>
                 </field>
-                <field id="prefix" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="prefix" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Prefix</label>
                     <backend_model>Softaware\OrderTools\Model\Config\Backend\Affix</backend_model>
-                    <comment><![CDATA[For example <code>WEB-{yy}-</code>. Placeholders: <code>{store_id}</code> <code>{yyyy}</code> <code>{yy}</code> <code>{mm}</code> <code>{dd}</code>. Otherwise letters, digits, "-", "_" and "." only, up to 20 characters. Store views with the same prefix and suffix share one counter.]]></comment>
+                    <comment><![CDATA[For example <code>WEB-{yy}-</code>. Placeholders: <code>{store_id}</code> <code>{yyyy}</code> <code>{yy}</code> <code>{mm}</code> <code>{dd}</code>. Otherwise letters, digits, "-", "_" and "." only, up to 20 characters. Store views with the same prefix and suffix share one counter. Default: empty.]]></comment>
+                    <validate>validate-length maximum-length-20</validate>
                     <depends><field id="mode">custom</field></depends>
                 </field>
-                <field id="suffix" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="suffix" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Suffix</label>
                     <backend_model>Softaware\OrderTools\Model\Config\Backend\Affix</backend_model>
-                    <comment>Same rules as the prefix. Usually empty.</comment>
+                    <comment>Same rules as the prefix. Default: empty.</comment>
+                    <validate>validate-length maximum-length-20</validate>
                     <depends><field id="mode">custom</field></depends>
                 </field>
                 <field id="length" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Minimum Counter Length</label>
                     <validate>required-entry validate-digits validate-digits-range digits-range-1-10</validate>
-                    <comment>The counter is padded with leading zeros to this length (1-10), e.g. 6 gives 000123.</comment>
+                    <comment>The counter is padded with leading zeros to this length (1-10), e.g. 6 gives 000123. Default: 6.</comment>
                     <depends><field id="mode">custom</field></depends>
                 </field>
                 <field id="start" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Start Value</label>
                     <validate>required-entry validate-digits validate-digits-range digits-range-0-999999999</validate>
-                    <comment>First counter value. Raising it later makes the counter jump to it; lowering it has no effect on a counter that is already running.</comment>
+                    <comment>First counter value. Raising it later makes the counter jump to it; lowering it has no effect on a counter that is already running. Default: 1.</comment>
                     <depends><field id="mode">custom</field></depends>
                 </field>
                 <field id="step" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Increment Step</label>
+                    <comment>How much the counter goes up per document (1-1000). Default: 1.</comment>
                     <validate>required-entry validate-digits validate-digits-range digits-range-1-1000</validate>
                     <depends><field id="mode">custom</field></depends>
                 </field>
@@ -145,7 +154,7 @@
                     <label>Restart Counter</label>
                     <source_model>Softaware\OrderTools\Model\Source\CounterReset</source_model>
                     <backend_model>Softaware\OrderTools\Model\Config\Backend\CounterReset</backend_model>
-                    <comment><![CDATA[The counter restarts at the start value only if the number contains the period: <code>{yyyy}</code> or <code>{yy}</code> for every year, plus <code>{mm}</code> for every month. Otherwise it keeps counting, so numbers never repeat. Default scope only.]]></comment>
+                    <comment><![CDATA[The counter restarts at the start value only if the number contains the period: <code>{yyyy}</code> or <code>{yy}</code> for every year, plus <code>{mm}</code> for every month. Otherwise it keeps counting, so numbers never repeat. Default scope only. Default: Never.]]></comment>
                     <depends><field id="mode">custom</field></depends>
                 </field>
             </group>
@@ -154,34 +163,37 @@
                 <field id="mode" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Numbering</label>
                     <source_model>Softaware\OrderTools\Model\Source\DocumentNumberMode</source_model>
-                    <comment>Applies to new documents only. Existing numbers never change. "Same as the order number" uses the order number, with -1, -2, ... for further documents of the same order.</comment>
+                    <comment>Applies to new documents only. Existing numbers never change. "Same as the order number" uses the order number, with -1, -2, ... for further documents of the same order. Default: Magento default.</comment>
                 </field>
-                <field id="prefix" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="prefix" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Prefix</label>
                     <backend_model>Softaware\OrderTools\Model\Config\Backend\Affix</backend_model>
-                    <comment><![CDATA[For example <code>WEB-{yy}-</code>. Placeholders: <code>{store_id}</code> <code>{yyyy}</code> <code>{yy}</code> <code>{mm}</code> <code>{dd}</code>. Otherwise letters, digits, "-", "_" and "." only, up to 20 characters. Store views with the same prefix and suffix share one counter.]]></comment>
+                    <comment><![CDATA[For example <code>WEB-{yy}-</code>. Placeholders: <code>{store_id}</code> <code>{yyyy}</code> <code>{yy}</code> <code>{mm}</code> <code>{dd}</code>. Otherwise letters, digits, "-", "_" and "." only, up to 20 characters. Store views with the same prefix and suffix share one counter. Default: empty.]]></comment>
+                    <validate>validate-length maximum-length-20</validate>
                     <depends><field id="mode">custom</field></depends>
                 </field>
-                <field id="suffix" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="suffix" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Suffix</label>
                     <backend_model>Softaware\OrderTools\Model\Config\Backend\Affix</backend_model>
-                    <comment>Same rules as the prefix. Usually empty.</comment>
+                    <comment>Same rules as the prefix. Default: empty.</comment>
+                    <validate>validate-length maximum-length-20</validate>
                     <depends><field id="mode">custom</field></depends>
                 </field>
                 <field id="length" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Minimum Counter Length</label>
                     <validate>required-entry validate-digits validate-digits-range digits-range-1-10</validate>
-                    <comment>The counter is padded with leading zeros to this length (1-10), e.g. 6 gives 000123.</comment>
+                    <comment>The counter is padded with leading zeros to this length (1-10), e.g. 6 gives 000123. Default: 6.</comment>
                     <depends><field id="mode">custom</field></depends>
                 </field>
                 <field id="start" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Start Value</label>
                     <validate>required-entry validate-digits validate-digits-range digits-range-0-999999999</validate>
-                    <comment>First counter value. Raising it later makes the counter jump to it; lowering it has no effect on a counter that is already running.</comment>
+                    <comment>First counter value. Raising it later makes the counter jump to it; lowering it has no effect on a counter that is already running. Default: 1.</comment>
                     <depends><field id="mode">custom</field></depends>
                 </field>
                 <field id="step" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Increment Step</label>
+                    <comment>How much the counter goes up per document (1-1000). Default: 1.</comment>
                     <validate>required-entry validate-digits validate-digits-range digits-range-1-1000</validate>
                     <depends><field id="mode">custom</field></depends>
                 </field>
@@ -189,7 +201,7 @@
                     <label>Restart Counter</label>
                     <source_model>Softaware\OrderTools\Model\Source\CounterReset</source_model>
                     <backend_model>Softaware\OrderTools\Model\Config\Backend\CounterReset</backend_model>
-                    <comment><![CDATA[The counter restarts at the start value only if the number contains the period: <code>{yyyy}</code> or <code>{yy}</code> for every year, plus <code>{mm}</code> for every month. Otherwise it keeps counting, so numbers never repeat. Default scope only.]]></comment>
+                    <comment><![CDATA[The counter restarts at the start value only if the number contains the period: <code>{yyyy}</code> or <code>{yy}</code> for every year, plus <code>{mm}</code> for every month. Otherwise it keeps counting, so numbers never repeat. Default scope only. Default: Never.]]></comment>
                     <depends><field id="mode">custom</field></depends>
                 </field>
             </group>
@@ -198,34 +210,37 @@
                 <field id="mode" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Numbering</label>
                     <source_model>Softaware\OrderTools\Model\Source\DocumentNumberMode</source_model>
-                    <comment>Applies to new documents only. Existing numbers never change. "Same as the order number" uses the order number, with -1, -2, ... for further documents of the same order.</comment>
+                    <comment>Applies to new documents only. Existing numbers never change. "Same as the order number" uses the order number, with -1, -2, ... for further documents of the same order. Default: Magento default.</comment>
                 </field>
-                <field id="prefix" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="prefix" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Prefix</label>
                     <backend_model>Softaware\OrderTools\Model\Config\Backend\Affix</backend_model>
-                    <comment><![CDATA[For example <code>WEB-{yy}-</code>. Placeholders: <code>{store_id}</code> <code>{yyyy}</code> <code>{yy}</code> <code>{mm}</code> <code>{dd}</code>. Otherwise letters, digits, "-", "_" and "." only, up to 20 characters. Store views with the same prefix and suffix share one counter.]]></comment>
+                    <comment><![CDATA[For example <code>WEB-{yy}-</code>. Placeholders: <code>{store_id}</code> <code>{yyyy}</code> <code>{yy}</code> <code>{mm}</code> <code>{dd}</code>. Otherwise letters, digits, "-", "_" and "." only, up to 20 characters. Store views with the same prefix and suffix share one counter. Default: empty.]]></comment>
+                    <validate>validate-length maximum-length-20</validate>
                     <depends><field id="mode">custom</field></depends>
                 </field>
-                <field id="suffix" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="suffix" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Suffix</label>
                     <backend_model>Softaware\OrderTools\Model\Config\Backend\Affix</backend_model>
-                    <comment>Same rules as the prefix. Usually empty.</comment>
+                    <comment>Same rules as the prefix. Default: empty.</comment>
+                    <validate>validate-length maximum-length-20</validate>
                     <depends><field id="mode">custom</field></depends>
                 </field>
                 <field id="length" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Minimum Counter Length</label>
                     <validate>required-entry validate-digits validate-digits-range digits-range-1-10</validate>
-                    <comment>The counter is padded with leading zeros to this length (1-10), e.g. 6 gives 000123.</comment>
+                    <comment>The counter is padded with leading zeros to this length (1-10), e.g. 6 gives 000123. Default: 6.</comment>
                     <depends><field id="mode">custom</field></depends>
                 </field>
                 <field id="start" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Start Value</label>
                     <validate>required-entry validate-digits validate-digits-range digits-range-0-999999999</validate>
-                    <comment>First counter value. Raising it later makes the counter jump to it; lowering it has no effect on a counter that is already running.</comment>
+                    <comment>First counter value. Raising it later makes the counter jump to it; lowering it has no effect on a counter that is already running. Default: 1.</comment>
                     <depends><field id="mode">custom</field></depends>
                 </field>
                 <field id="step" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Increment Step</label>
+                    <comment>How much the counter goes up per document (1-1000). Default: 1.</comment>
                     <validate>required-entry validate-digits validate-digits-range digits-range-1-1000</validate>
                     <depends><field id="mode">custom</field></depends>
                 </field>
@@ -233,7 +248,7 @@
                     <label>Restart Counter</label>
                     <source_model>Softaware\OrderTools\Model\Source\CounterReset</source_model>
                     <backend_model>Softaware\OrderTools\Model\Config\Backend\CounterReset</backend_model>
-                    <comment><![CDATA[The counter restarts at the start value only if the number contains the period: <code>{yyyy}</code> or <code>{yy}</code> for every year, plus <code>{mm}</code> for every month. Otherwise it keeps counting, so numbers never repeat. Default scope only.]]></comment>
+                    <comment><![CDATA[The counter restarts at the start value only if the number contains the period: <code>{yyyy}</code> or <code>{yy}</code> for every year, plus <code>{mm}</code> for every month. Otherwise it keeps counting, so numbers never repeat. Default scope only. Default: Never.]]></comment>
                     <depends><field id="mode">custom</field></depends>
                 </field>
             </group>

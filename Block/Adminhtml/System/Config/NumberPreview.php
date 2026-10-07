@@ -51,21 +51,30 @@ class NumberPreview extends Field
     protected function _getElementHtml(AbstractElement $element)
     {
         $escaper = $this->_escaper;
-        $html = '<table class="data-grid sot-number-preview"><thead><tr>'
-            . '<th class="data-grid-th">' . $escaper->escapeHtml(__('Store View')) . '</th>';
+        // The stylesheet is linked here, so it is only loaded on this settings section (not on every config page).
+        $html = '<link rel="stylesheet" type="text/css" href="'
+            . $escaper->escapeUrl($this->getViewFileUrl('Softaware_OrderTools::css/admin.css')) . '"/>';
+        if (!$this->config->isEnabled()) {
+            $html .= '<div class="message message-warning sot-number-preview__notice"><div>'
+                . $escaper->escapeHtml(__(
+                    'Order Tools is switched off (Order Tools > General > Enabled), so Magento\'s own numbers are used.'
+                ))
+                . '</div></div>';
+        }
+        $html .= '<div class="sot-number-preview__wrap"><table class="data-grid sot-number-preview" aria-label="'
+            . $escaper->escapeHtmlAttr(__('Next Numbers')) . '"><thead><tr><th class="data-grid-th" scope="col">' . $escaper->escapeHtml(__('Store View')) . '</th>';
         foreach (self::LABELS as $label) {
-            $html .= '<th class="data-grid-th">' . $escaper->escapeHtml(__($label)) . '</th>';
+            $html .= '<th class="data-grid-th" scope="col">' . $escaper->escapeHtml(__($label)) . '</th>';
         }
         $html .= '</tr></thead><tbody>';
         foreach ($this->getStores() as $store) {
-            $html .= '<tr><td style="padding:.6rem 1rem">' . $escaper->escapeHtml($store->getName()) . '</td>';
+            $html .= '<tr><th scope="row">' . $escaper->escapeHtml($store->getName()) . '</th>';
             foreach (array_keys(self::LABELS) as $entityType) {
-                $html .= '<td style="white-space:nowrap;padding:.6rem 1rem">'
-                    . $this->renderCell($entityType, (int)$store->getId()) . '</td>';
+                $html .= '<td>' . $this->renderCell($entityType, (int)$store->getId()) . '</td>';
             }
             $html .= '</tr>';
         }
-        $html .= '</tbody></table>';
+        $html .= '</tbody></table></div>';
         return $html;
     }
 
@@ -74,7 +83,7 @@ class NumberPreview extends Field
         $escaper = $this->_escaper;
         $settings = $this->config->getNumberSettings($entityType, $storeId);
         if ($settings->isSameAsOrder()) {
-            return '<em>' . $escaper->escapeHtml(__('Same as the order number')) . '</em>';
+            return '<span class="sot-number-preview__muted">' . $escaper->escapeHtml(__('Same as the order number')) . '</span>';
         }
         try {
             $next = $this->generator->preview($settings);
@@ -83,10 +92,12 @@ class NumberPreview extends Field
         }
         if ($next === null) {
             $last = $this->generator->lastNumber($entityType, $storeId);
-            return '<em>' . $escaper->escapeHtml(__('Magento default')) . '</em>'
-                . ($last !== null ? '<br/><small>' . $escaper->escapeHtml(__('last: %1', $last)) . '</small>' : '');
+            return '<span class="sot-number-preview__muted">' . $escaper->escapeHtml(__('Magento default')) . '</span>'
+                . ($last !== null
+                    ? '<span class="sot-number-preview__last">' . $escaper->escapeHtml(__('Last used: %1', $last)) . '</span>'
+                    : '');
         }
-        return '<strong>' . $escaper->escapeHtml($next) . '</strong>';
+        return '<strong class="sot-number-preview__next">' . $escaper->escapeHtml($next) . '</strong>';
     }
 
     /**
