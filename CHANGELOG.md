@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.1 (2026-10-07)
+
+### Fixed
+
+- `bin/magento softaware:order-tools:grid:backfill` works on Magento 2.4.7 and 2.4.8. It stopped with "Call to
+  protected method" there, because Magento made `getGridOriginSelect()` of the sales grid public only in 2.4.9.
+- README: the module requires `softaware/module-core` ^1.0 (the README said ^1.2; composer.json was right).
+
 ## 1.2.0 (2026-10-07)
 
 ### Added

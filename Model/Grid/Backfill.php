@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Softaware\OrderTools\Model\Grid;
 
+use Magento\Framework\DB\Select;
 use Magento\Sales\Model\ResourceModel\Grid;
 
 /**
@@ -35,7 +36,7 @@ class Backfill
         $lastId = 0;
         $done = 0;
         do {
-            $select = $this->orderGrid->getGridOriginSelect()
+            $select = $this->gridOriginSelect()
                 ->where('sales_order.entity_id > ?', $lastId)
                 ->order('sales_order.entity_id ASC')
                 ->limit($batchSize);
@@ -52,5 +53,14 @@ class Backfill
             }
         } while (count($rows) === $batchSize);
         return $done;
+    }
+
+    /**
+     * Grid::getGridOriginSelect() is public only from Magento 2.4.9 (protected in 2.4.7/2.4.8); a reflection call
+     * works with both.
+     */
+    private function gridOriginSelect(): Select
+    {
+        return (new \ReflectionMethod($this->orderGrid, 'getGridOriginSelect'))->invoke($this->orderGrid);
     }
 }
