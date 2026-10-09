@@ -1,0 +1,120 @@
+{
+    "tagline": "Your own order, invoice, shipment and credit memo numbers, useful extra columns in the order grid, a test order flag and carefully guarded order deletion with an audit log.",
+    "key_features": [
+        "Custom order, invoice, shipment and credit memo numbers",
+        "Prefix, suffix, padding, start value and step per store view",
+        "Date and store placeholders, optional yearly or monthly restart",
+        "Invoices and shipments can reuse the order number",
+        "Extra order grid columns: items, coupon, country, comment",
+        "Test order flag with mass actions and filter",
+        "Order deletion: off by default, own permission, allowed statuses only",
+        "Read-only Deleted Orders Log with CSV export"
+    ],
+    "benefits": [
+        {
+            "icon": "tag",
+            "title": "Numbers that fit your business",
+            "text": "Orders like WEB-26-000123 instead of 000000123, with invoices, shipments and credit memos numbered your way or matching the order."
+        },
+        {
+            "icon": "clock",
+            "title": "Less clicking in the order grid",
+            "text": "See the ordered SKUs, coupon code, shipping country and order comment in Sales > Orders, with filters, without opening each order."
+        },
+        {
+            "icon": "shield",
+            "title": "Deleting with guard rails",
+            "text": "Deleting is off until you switch it on, needs its own permission, only accepts the statuses you allow and records every deletion in a log."
+        }
+    ],
+    "showcase": [
+        {
+            "label": "Document numbers",
+            "title": "Your own numbering, previewed before the next order",
+            "text": "Prefix, suffix, minimum length, start value and step per store view, with {yyyy}, {yy}, {mm}, {dd} and {store_id} placeholders. The Next Numbers table shows what each store view will issue next.",
+            "image": "docs/images/document-numbers.png"
+        },
+        {
+            "label": "Order grid",
+            "title": "More of the order in the grid",
+            "text": "Items (SKU x qty), Coupon Code, Shipping Country, Order Comment and Test Order columns, each switched on separately and kept current by Magento's own grid indexer.",
+            "image": "docs/images/order-grid.png"
+        },
+        {
+            "label": "Delete from the grid",
+            "title": "A clear confirmation before anything is deleted",
+            "text": "The Delete Permanently mass action names the number of selected orders and what is not restored. At most 200 orders per request.",
+            "image": "docs/images/delete-confirm.png"
+        },
+        {
+            "label": "Status check",
+            "title": "Orders with other statuses are refused",
+            "text": "Every order is checked on the server against the allowed statuses (default: Canceled only), and checked again under a row lock just before it is deleted.",
+            "image": "docs/images/delete-status-guard.png"
+        },
+        {
+            "label": "Order page",
+            "title": "Delete one order from its page",
+            "text": "The Delete Permanently button appears only when deleting is on, the admin role allows it and the order's status is allowed.",
+            "image": "docs/images/order-page-delete.png"
+        },
+        {
+            "label": "Deleted Orders Log",
+            "title": "Every deletion on record",
+            "text": "Order number, store view, status, grand total, deleted documents, admin user, IP address and time. Read-only, searchable, with CSV export. The customer email is stored as a hash by default.",
+            "image": "docs/images/deleted-orders-log.png"
+        }
+    ],
+    "feature_groups": [
+        {
+            "title": "Document numbers",
+            "items": [
+                "Order, invoice, shipment and credit memo, each configured separately",
+                "Per store view, website or default scope",
+                "Placeholders {store_id} {yyyy} {yy} {mm} {dd}",
+                "Yearly or monthly restart only when the number contains the period",
+                "Atomic counters, duplicate check and fallback to Magento's number"
+            ]
+        },
+        {
+            "title": "Order grid",
+            "items": [
+                "Items as \"SKU x qty\"",
+                "Coupon Code and Order Comment (text filters)",
+                "Shipping Country (select filter)",
+                "Test Order flag with Mark and Unmark mass actions",
+                "CLI backfill for orders placed before installation"
+            ]
+        },
+        {
+            "title": "Deleting orders",
+            "items": [
+                "Off by default, own ACL resource Delete Orders",
+                "Only the order statuses you allow (default: Canceled)",
+                "POST with form key and a confirmation dialog",
+                "Removes invoices, shipments, credit memos, payment, addresses and comments",
+                "One transaction per order, together with its log entry"
+            ]
+        },
+        {
+            "title": "Admin and developers",
+            "items": [
+                "Deleted Orders Log with keyword search and CSV export",
+                "Customer email in the log stored as a SHA-256 hash or in clear",
+                "Separate ACL permissions per feature",
+                "CLI: show next numbers, backfill grid columns",
+                "No storefront code, no core rewrites"
+            ]
+        }
+    ],
+    "demo": {
+        "storefront": [],
+        "admin": [
+            {
+                "label": "Admin panel",
+                "url": "https://demo.softawarecommerce.com/try-admin/order-tools",
+                "image": "docs/images/document-numbers.png"
+            }
+        ]
+    }
+}

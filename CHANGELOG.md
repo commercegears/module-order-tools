@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.2 (2026-10-09)
+
+### Added
+
+- Product listing, FAQ and user guide (docs/).
+
 ## 1.2.1 (2026-10-07)
 
 ### Fixed

@@ -6,6 +6,8 @@ Small, frequently requested order utilities: your own order, invoice, shipment a
 order grid columns, a test order flag and guarded order deletion with an audit log. Everything that changes
 behaviour is off by default.
 
+User guide: [docs/user-guide.md](docs/user-guide.md) · FAQ: [docs/faq.md](docs/faq.md)
+
 ## Features
 
 ### Document numbers
