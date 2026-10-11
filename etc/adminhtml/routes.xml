@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="admin">
-        <route id="softaware_ordertools" frontName="softaware_ordertools">
-            <module name="Softaware_OrderTools" before="Magento_Backend"/>
+        <route id="commercegears_ordertools" frontName="commercegears_ordertools">
+            <module name="CommerceGears_OrderTools" before="Magento_Backend"/>
         </route>
     </router>
 </config>

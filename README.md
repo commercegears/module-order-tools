@@ -1,6 +1,6 @@
-# Softaware Order Tools
+# CommerceGears Order Tools
 
-`softaware/module-order-tools` (Magento module `Softaware_OrderTools`). Free.
+`commercegears/module-order-tools` (Magento module `CommerceGears_OrderTools`). Free.
 
 Small, frequently requested order utilities: your own order, invoice, shipment and credit memo numbers, extra
 order grid columns, a test order flag and guarded order deletion with an audit log. Everything that changes
@@ -60,7 +60,7 @@ orders are easy to find (and, once cancelled, to delete). Off by default.
 - **Delete Permanently** mass action in the order grid and button on the order page, both with a confirmation
   (the grid's confirmation shows the number of selected orders). POST with form key only.
 - Guards, all checked on the server for every order: the setting **Allow Deleting Orders**; the ACL resource
-  **Softaware > Order Tools > Delete Orders** (not part of any role unless you add it; roles with "All" resources
+  **CommerceGears > Order Tools > Delete Orders** (not part of any role unless you add it; roles with "All" resources
   have it); the order's **current status** must be one of the allowed statuses (default: Canceled only), checked
   again with a row lock inside the delete transaction; at most **200 orders** per request.
 - Deletes the order with its invoices, shipments, credit memos (through Magento's repositories, so their grid rows
@@ -68,7 +68,7 @@ orders are easy to find (and, once cancelled, to delete). Off by default.
   in its own transaction together with its log entry.
 - **Nothing is restored**: no stock, no refunds, no reward points or store credit. Downloadable links bought with the
   order are kept by Magento (unlinked from the order). Sales reports keep their aggregated figures until refreshed.
-- **Deleted Orders Log** (Softaware > Order Tools > Deleted Orders Log): order number, order ID, store view, status,
+- **Deleted Orders Log** (CommerceGears > Order Tools > Deleted Orders Log): order number, order ID, store view, status,
   grand total, currency, customer email (stored as a SHA-256 hash by default, or in clear), test order flag, the
   deleted document numbers, order date, admin user, IP address and time. Read-only, with keyword search (order
   number, admin user or customer email; an email address also finds entries stored as a hash), filters and a CSV
@@ -77,49 +77,49 @@ orders are easy to find (and, once cancelled, to delete). Off by default.
 
 ## Where in the admin
 
-- Settings: Stores > Configuration > Softaware > **Order Tools** (enabled switch, order grid, deleting orders;
+- Settings: Stores > Configuration > CommerceGears > **Order Tools** (enabled switch, order grid, deleting orders;
   default scope) and **Order Tools: Document Numbers** (default / website / store view; the counter restart is
-  default scope only). Also linked from Softaware > Order Tools.
-- Softaware > Order Tools > Deleted Orders Log.
-- ACL (Softaware > Order Tools): Delete Orders, View Deleted Orders Log, Mark Test Orders,
+  default scope only). Also linked from CommerceGears > Order Tools.
+- CommerceGears > Order Tools > Deleted Orders Log.
+- ACL (CommerceGears > Order Tools): Delete Orders, View Deleted Orders Log, Mark Test Orders,
   Settings: Order Grid and Deleting, Settings: Document Numbers.
 
 ## Configuration
 
 | Path | Default | |
 |---|---|---|
-| `softaware_ordertools/general/enabled` | 1 | Master switch for all features |
-| `softaware_ordertools/grid/columns` | (empty) | `sot_items,sot_coupon_code,sot_shipping_country,sot_customer_note` |
-| `softaware_ordertools/grid/test_flag` | 0 | Test order column and mass actions |
-| `softaware_ordertools/delete/enabled` | 0 | Allow deleting orders |
-| `softaware_ordertools/delete/statuses` | canceled | Comma-separated status codes |
-| `softaware_ordertools/delete/customer_email` | hash | `hash` or `keep` |
-| `softaware_ordertools_numbers/<type>/mode` | default | `default`, `custom`, `order` (not for orders); type = order, invoice, shipment, creditmemo |
-| `softaware_ordertools_numbers/<type>/prefix`, `.../suffix` | (empty) | |
-| `softaware_ordertools_numbers/<type>/length` | 6 | 1-10 |
-| `softaware_ordertools_numbers/<type>/start`, `.../step` | 1, 1 | |
-| `softaware_ordertools_numbers/<type>/reset` | never | `never`, `yearly`, `monthly` (default scope) |
+| `commercegears_ordertools/general/enabled` | 1 | Master switch for all features |
+| `commercegears_ordertools/grid/columns` | (empty) | `sot_items,sot_coupon_code,sot_shipping_country,sot_customer_note` |
+| `commercegears_ordertools/grid/test_flag` | 0 | Test order column and mass actions |
+| `commercegears_ordertools/delete/enabled` | 0 | Allow deleting orders |
+| `commercegears_ordertools/delete/statuses` | canceled | Comma-separated status codes |
+| `commercegears_ordertools/delete/customer_email` | hash | `hash` or `keep` |
+| `commercegears_ordertools_numbers/<type>/mode` | default | `default`, `custom`, `order` (not for orders); type = order, invoice, shipment, creditmemo |
+| `commercegears_ordertools_numbers/<type>/prefix`, `.../suffix` | (empty) | |
+| `commercegears_ordertools_numbers/<type>/length` | 6 | 1-10 |
+| `commercegears_ordertools_numbers/<type>/start`, `.../step` | 1, 1 | |
+| `commercegears_ordertools_numbers/<type>/reset` | never | `never`, `yearly`, `monthly` (default scope) |
 
 Example (orders `WEB-26-000001`):
 
 ```
-bin/magento config:set softaware_ordertools_numbers/order/mode custom
-bin/magento config:set softaware_ordertools_numbers/order/prefix 'WEB-{yy}-'
-bin/magento config:set softaware_ordertools_numbers/order/length 6
+bin/magento config:set commercegears_ordertools_numbers/order/mode custom
+bin/magento config:set commercegears_ordertools_numbers/order/prefix 'WEB-{yy}-'
+bin/magento config:set commercegears_ordertools_numbers/order/length 6
 ```
 
 ## CLI
 
 ```
-bin/magento softaware:order-tools:sequence:show [--store=<id|code>]   # last and next numbers per store view (read-only)
-bin/magento softaware:order-tools:grid:backfill [--batch-size=500]    # fill the grid columns for existing orders
+bin/magento commercegears:order-tools:sequence:show [--store=<id|code>]   # last and next numbers per store view (read-only)
+bin/magento commercegears:order-tools:grid:backfill [--batch-size=500]    # fill the grid columns for existing orders
 ```
 
 Run the backfill once after installation; orders saved later are handled by Magento's grid indexer.
 
 ## Compatibility
 
-Magento Open Source / Adobe Commerce 2.4.7 to 2.4.9, PHP 8.2 to 8.5. Requires `softaware/module-core` ^1.3.
+Magento Open Source / Adobe Commerce 2.4.7 to 2.4.9, PHP 8.2 to 8.5. Requires `commercegears/module-core` ^1.3.
 No storefront code (numbers appear wherever Magento shows them, on Luma and Hyvä alike).
 
 ## Limitations

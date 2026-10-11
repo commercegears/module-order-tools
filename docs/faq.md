@@ -2,7 +2,7 @@
 
 **Does Order Tools change anything when I install it?**
 No. Document numbers stay on Magento's default, no extra grid columns are shown, the test order flag is off and
-deleting orders is off. You switch on each feature yourself under **Stores > Configuration > Softaware > Order
+deleting orders is off. You switch on each feature yourself under **Stores > Configuration > CommerceGears > Order
 Tools** and **Order Tools: Document Numbers**.
 
 **Will my existing order and invoice numbers change?**
@@ -31,11 +31,11 @@ share one counter; use `{store_id}` or a different prefix to give each store vie
 **Which columns does it add to the order grid?**
 Items (SKU x qty), Coupon Code, Shipping Country, Order Comment and, with the test order flag, Test Order. Payment
 method, shipping information and customer group are already in Magento's own **Columns** menu, so they are not
-duplicated. Run `bin/magento softaware:order-tools:grid:backfill` once to fill the columns for older orders.
+duplicated. Run `bin/magento commercegears:order-tools:grid:backfill` once to fill the columns for older orders.
 
 **How is deleting orders protected?**
 Several guards, all checked on the server for every order: **Allow Deleting Orders** must be switched on (it is
-off by default); the admin role needs the separate permission **Softaware > Order Tools > Delete Orders**; the
+off by default); the admin role needs the separate permission **CommerceGears > Order Tools > Delete Orders**; the
 order's current status must be one of the statuses you allow (default: Canceled only), and it is checked again with
 a row lock just before the order is deleted; at most 200 orders per request; only POST requests with a valid form
 key; and a confirmation dialog in the grid and on the order page.
@@ -46,7 +46,7 @@ tax rows, and their grid rows. Nothing is restored: no stock, no refunds, no rew
 Cancel and refund an order first if you need that. Sales reports keep their figures until they are refreshed.
 
 **Is there a record of deleted orders?**
-Yes. **Softaware > Order Tools > Deleted Orders Log** lists every deleted order with its number, store view,
+Yes. **CommerceGears > Order Tools > Deleted Orders Log** lists every deleted order with its number, store view,
 status, grand total, the deleted document numbers, order date, admin user, IP address and time. It is read-only,
 can be searched and exported as CSV, and entries cannot be deleted from the admin.
 
@@ -60,4 +60,4 @@ Order Tools has no storefront code. The numbers appear wherever Magento shows th
 Luma, Hyvä and any other theme alike.
 
 **Is Order Tools free?**
-Yes, Order Tools is free. It requires `softaware/module-core`, which Composer installs automatically.
+Yes, Order Tools is free. It requires `commercegears/module-core`, which Composer installs automatically.

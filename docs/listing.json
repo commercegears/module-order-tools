@@ -112,7 +112,7 @@
         "admin": [
             {
                 "label": "Admin panel",
-                "url": "https://demo.softawarecommerce.com/try-admin/order-tools",
+                "url": "https://demo.commercegears.com/try-admin/order-tools",
                 "image": "docs/images/document-numbers.png"
             }
         ]

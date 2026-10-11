@@ -2,23 +2,23 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <!-- Document numbers -->
     <type name="Magento\SalesSequence\Model\Manager">
-        <plugin name="softaware_ordertools_custom_numbers" type="Softaware\OrderTools\Plugin\SequenceManagerPlugin"/>
+        <plugin name="commercegears_ordertools_custom_numbers" type="CommerceGears\OrderTools\Plugin\SequenceManagerPlugin"/>
     </type>
     <type name="Magento\Sales\Model\ResourceModel\Order\Invoice">
-        <plugin name="softaware_ordertools_same_as_order" type="Softaware\OrderTools\Plugin\SameAsOrderNumberPlugin"/>
+        <plugin name="commercegears_ordertools_same_as_order" type="CommerceGears\OrderTools\Plugin\SameAsOrderNumberPlugin"/>
     </type>
     <type name="Magento\Sales\Model\ResourceModel\Order\Shipment">
-        <plugin name="softaware_ordertools_same_as_order" type="Softaware\OrderTools\Plugin\SameAsOrderNumberPlugin"/>
+        <plugin name="commercegears_ordertools_same_as_order" type="CommerceGears\OrderTools\Plugin\SameAsOrderNumberPlugin"/>
     </type>
     <type name="Magento\Sales\Model\ResourceModel\Order\Creditmemo">
-        <plugin name="softaware_ordertools_same_as_order" type="Softaware\OrderTools\Plugin\SameAsOrderNumberPlugin"/>
+        <plugin name="commercegears_ordertools_same_as_order" type="CommerceGears\OrderTools\Plugin\SameAsOrderNumberPlugin"/>
     </type>
 
     <!-- Order grid columns, kept in sync by Magento's order grid indexer -->
     <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid">
         <arguments>
             <argument name="columns" xsi:type="array">
-                <item name="sot_items" xsi:type="object">Softaware\OrderTools\Model\Grid\ItemsExpression</item>
+                <item name="sot_items" xsi:type="object">CommerceGears\OrderTools\Model\Grid\ItemsExpression</item>
                 <item name="sot_coupon_code" xsi:type="string">sales_order.coupon_code</item>
                 <item name="sot_shipping_country" xsi:type="string">sales_shipping_address.country_id</item>
                 <item name="sot_customer_note" xsi:type="string">sales_order.customer_note</item>
@@ -26,12 +26,12 @@
             </argument>
         </arguments>
     </virtualType>
-    <type name="Softaware\OrderTools\Model\Grid\Backfill">
+    <type name="CommerceGears\OrderTools\Model\Grid\Backfill">
         <arguments>
             <argument name="orderGrid" xsi:type="object">Magento\Sales\Model\ResourceModel\Order\Grid</argument>
         </arguments>
     </type>
-    <type name="Softaware\OrderTools\Model\TestFlag">
+    <type name="CommerceGears\OrderTools\Model\TestFlag">
         <arguments>
             <argument name="orderGrid" xsi:type="object">Magento\Sales\Model\ResourceModel\Order\Grid</argument>
         </arguments>
@@ -41,19 +41,19 @@
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
-                <item name="softaware_ordertools_deleted_listing_data_source" xsi:type="string">Softaware\OrderTools\Model\ResourceModel\DeletedOrder\Grid\Collection</item>
+                <item name="commercegears_ordertools_deleted_listing_data_source" xsi:type="string">CommerceGears\OrderTools\Model\ResourceModel\DeletedOrder\Grid\Collection</item>
             </argument>
         </arguments>
     </type>
-    <virtualType name="Softaware\OrderTools\Model\ResourceModel\DeletedOrder\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+    <virtualType name="CommerceGears\OrderTools\Model\ResourceModel\DeletedOrder\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
-            <argument name="mainTable" xsi:type="string">softaware_ordertools_deleted_order</argument>
-            <argument name="resourceModel" xsi:type="string">Softaware\OrderTools\Model\ResourceModel\DeletedOrder</argument>
+            <argument name="mainTable" xsi:type="string">commercegears_ordertools_deleted_order</argument>
+            <argument name="resourceModel" xsi:type="string">CommerceGears\OrderTools\Model\ResourceModel\DeletedOrder</argument>
             <argument name="identifierName" xsi:type="string">log_id</argument>
         </arguments>
     </virtualType>
 
-    <type name="Softaware\OrderTools\Model\DeleteMessages">
+    <type name="CommerceGears\OrderTools\Model\DeleteMessages">
         <arguments>
             <argument name="authSession" xsi:type="object">Magento\Backend\Model\Auth\Session\Proxy</argument>
         </arguments>
@@ -62,8 +62,8 @@
     <type name="Magento\Framework\Console\CommandListInterface">
         <arguments>
             <argument name="commands" xsi:type="array">
-                <item name="softaware_ordertools_sequence_show" xsi:type="object">Softaware\OrderTools\Console\Command\SequenceShowCommand</item>
-                <item name="softaware_ordertools_grid_backfill" xsi:type="object">Softaware\OrderTools\Console\Command\GridBackfillCommand</item>
+                <item name="commercegears_ordertools_sequence_show" xsi:type="object">CommerceGears\OrderTools\Console\Command\SequenceShowCommand</item>
+                <item name="commercegears_ordertools_grid_backfill" xsi:type="object">CommerceGears\OrderTools\Console\Command\GridBackfillCommand</item>
             </argument>
         </arguments>
     </type>

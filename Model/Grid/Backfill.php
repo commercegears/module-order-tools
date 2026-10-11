@@ -1,12 +1,12 @@
 <?php
 /**
- * Softaware Order Tools
+ * CommerceGears Order Tools
  *
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\OrderTools\Model\Grid;
+namespace CommerceGears\OrderTools\Model\Grid;
 
 use Magento\Framework\DB\Select;
 use Magento\Sales\Model\ResourceModel\Grid;

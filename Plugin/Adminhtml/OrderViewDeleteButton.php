@@ -1,18 +1,18 @@
 <?php
 /**
- * Softaware Order Tools
+ * CommerceGears Order Tools
  *
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\OrderTools\Plugin\Adminhtml;
+namespace CommerceGears\OrderTools\Plugin\Adminhtml;
 
 use Magento\Framework\AuthorizationInterface;
 use Magento\Framework\Escaper;
 use Magento\Framework\View\LayoutInterface;
 use Magento\Sales\Block\Adminhtml\Order\View;
-use Softaware\OrderTools\Model\Config;
+use CommerceGears\OrderTools\Model\Config;
 
 /**
  * "Delete Permanently" button on the order page, shown only when deleting is allowed for the user and the order's
@@ -34,7 +34,7 @@ class OrderViewDeleteButton
      */
     public function beforeSetLayout(View $subject, $layout)
     {
-        if (!$this->config->isDeleteEnabled() || !$this->authorization->isAllowed('Softaware_OrderTools::delete')) {
+        if (!$this->config->isDeleteEnabled() || !$this->authorization->isAllowed('CommerceGears_OrderTools::delete')) {
             return null;
         }
         $order = $subject->getOrder();
@@ -48,8 +48,8 @@ class OrderViewDeleteButton
                 'class' => 'delete',
                 'data_attribute' => [
                     'mage-init' => [
-                        'Softaware_OrderTools/js/delete-order' => [
-                            'url' => $subject->getUrl('softaware_ordertools/order/delete'),
+                        'CommerceGears_OrderTools/js/delete-order' => [
+                            'url' => $subject->getUrl('commercegears_ordertools/order/delete'),
                             'orderId' => (int)$order->getId(),
                             'title' => (string)__('Delete Order Permanently'),
                             'message' => $this->escaper->escapeHtml(__(

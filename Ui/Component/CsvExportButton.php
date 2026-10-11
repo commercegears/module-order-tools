@@ -1,12 +1,12 @@
 <?php
 /**
- * Softaware Order Tools
+ * CommerceGears Order Tools
  *
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\OrderTools\Ui\Component;
+namespace CommerceGears\OrderTools\Ui\Component;
 
 use Magento\Ui\Component\ExportButton;
 
@@ -22,7 +22,7 @@ class CsvExportButton extends ExportButton
             'csv' => [
                 'value' => 'csv',
                 'label' => __('CSV'),
-                'url' => 'softaware_ordertools/deleted/exportCsv',
+                'url' => 'commercegears_ordertools/deleted/exportCsv',
             ],
         ];
         $this->setData('config', $config);

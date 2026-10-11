@@ -1,5 +1,5 @@
 {
-    "softaware_ordertools_counter": {
+    "commercegears_ordertools_counter": {
         "column": {
             "entity_type": true,
             "pattern": true,
@@ -11,7 +11,7 @@
             "PRIMARY": true
         }
     },
-    "softaware_ordertools_deleted_order": {
+    "commercegears_ordertools_deleted_order": {
         "column": {
             "log_id": true,
             "order_id": true,
@@ -31,8 +31,8 @@
             "deleted_at": true
         },
         "index": {
-            "SOFTAWARE_ORDERTOOLS_DELETED_ORDER_INCREMENT_ID": true,
-            "SOFTAWARE_ORDERTOOLS_DELETED_ORDER_DELETED_AT": true
+            "COMMERCEGEARS_ORDERTOOLS_DELETED_ORDER_INCREMENT_ID": true,
+            "COMMERCEGEARS_ORDERTOOLS_DELETED_ORDER_DELETED_AT": true
         },
         "constraint": {
             "PRIMARY": true

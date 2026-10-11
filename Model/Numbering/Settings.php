@@ -1,14 +1,14 @@
 <?php
 /**
- * Softaware Order Tools
+ * CommerceGears Order Tools
  *
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\OrderTools\Model\Numbering;
+namespace CommerceGears\OrderTools\Model\Numbering;
 
-use Softaware\OrderTools\Model\Config;
+use CommerceGears\OrderTools\Model\Config;
 
 /**
  * Numbering settings of one document type in one store view.

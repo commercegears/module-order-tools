@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <section id="softaware_ordertools" translate="label" sortOrder="61" showInDefault="1" showInWebsite="0" showInStore="0">
+        <section id="commercegears_ordertools" translate="label" sortOrder="61" showInDefault="1" showInWebsite="0" showInStore="0">
             <class>separator-top</class>
             <label>Order Tools</label>
-            <tab>softaware</tab>
-            <resource>Softaware_OrderTools::config</resource>
+            <tab>commercegears</tab>
+            <resource>CommerceGears_OrderTools::config</resource>
             <group id="general" translate="label" sortOrder="10" showInDefault="1">
                 <label>General</label>
                 <attribute type="expanded">1</attribute>
@@ -19,9 +19,9 @@
                 <label>Order Grid</label>
                 <field id="columns" translate="label comment" type="multiselect" sortOrder="10" showInDefault="1" canRestore="1">
                     <label>Extra Columns</label>
-                    <source_model>Softaware\OrderTools\Model\Source\GridColumns</source_model>
+                    <source_model>CommerceGears\OrderTools\Model\Source\GridColumns</source_model>
                     <can_be_empty>1</can_be_empty>
-                    <comment><![CDATA[Adds these columns (with filters) to Sales &gt; Orders. Payment method, shipping information and customer group are already available in Magento's own "Columns" menu. For orders placed before the module was installed run <code>bin/magento softaware:order-tools:grid:backfill</code> once. Default: none.]]></comment>
+                    <comment><![CDATA[Adds these columns (with filters) to Sales &gt; Orders. Payment method, shipping information and customer group are already available in Magento's own "Columns" menu. For orders placed before the module was installed run <code>bin/magento commercegears:order-tools:grid:backfill</code> once. Default: none.]]></comment>
                 </field>
                 <field id="test_flag" translate="label comment" type="select" sortOrder="20" showInDefault="1" canRestore="1">
                     <label>Test Order Flag</label>
@@ -34,33 +34,33 @@
                 <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" canRestore="1">
                     <label>Allow Deleting Orders</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment><![CDATA[Adds "Delete Permanently" to the order grid actions and the order page. The order is removed with all its documents, payments, addresses and comments; this cannot be undone and nothing is restored (stock, refunds, reward points). Admin roles also need Softaware &gt; Order Tools &gt; Delete Orders. Every deletion is recorded in the Deleted Orders Log. Default: No.]]></comment>
+                    <comment><![CDATA[Adds "Delete Permanently" to the order grid actions and the order page. The order is removed with all its documents, payments, addresses and comments; this cannot be undone and nothing is restored (stock, refunds, reward points). Admin roles also need CommerceGears &gt; Order Tools &gt; Delete Orders. Every deletion is recorded in the Deleted Orders Log. Default: No.]]></comment>
                 </field>
                 <field id="statuses" translate="label comment" type="multiselect" sortOrder="20" showInDefault="1" canRestore="1">
                     <label>Only Orders With These Statuses</label>
-                    <source_model>Softaware\OrderTools\Model\Source\OrderStatus</source_model>
+                    <source_model>CommerceGears\OrderTools\Model\Source\OrderStatus</source_model>
                     <can_be_empty>1</can_be_empty>
                     <comment>Orders with any other status are refused, also when selected in the grid. Default: Canceled. Avoid statuses of orders that were paid or shipped unless you keep their records elsewhere.</comment>
                     <depends><field id="enabled">1</field></depends>
                 </field>
                 <field id="customer_email" translate="label comment" type="select" sortOrder="30" showInDefault="1" canRestore="1">
                     <label>Customer Email in the Log</label>
-                    <source_model>Softaware\OrderTools\Model\Source\EmailInLog</source_model>
+                    <source_model>CommerceGears\OrderTools\Model\Source\EmailInLog</source_model>
                     <comment>The hash lets you check whether a given customer's order was deleted without keeping the address, which suits deletions made for data-protection requests. Default: Store a hash only.</comment>
                     <depends><field id="enabled">1</field></depends>
                 </field>
             </group>
         </section>
-        <section id="softaware_ordertools_numbers" translate="label" sortOrder="62" showInDefault="1" showInWebsite="1" showInStore="1">
+        <section id="commercegears_ordertools_numbers" translate="label" sortOrder="62" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Order Tools: Document Numbers</label>
-            <tab>softaware</tab>
-            <resource>Softaware_OrderTools::config_numbers</resource>
+            <tab>commercegears</tab>
+            <resource>CommerceGears_OrderTools::config_numbers</resource>
             <group id="preview" translate="label comment" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Next Numbers</label>
                 <attribute type="expanded">1</attribute>
                 <comment>The next number of each document type per store view, based on the saved settings (save to update). Custom numbers also need Order Tools &gt; General &gt; Enabled.</comment>
                 <field id="table" type="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <frontend_model>Softaware\OrderTools\Block\Adminhtml\System\Config\NumberPreview</frontend_model>
+                    <frontend_model>CommerceGears\OrderTools\Block\Adminhtml\System\Config\NumberPreview</frontend_model>
                 </field>
             </group>
             <group id="order" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -68,19 +68,19 @@
                 <attribute type="expanded">1</attribute>
                 <field id="mode" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Numbering</label>
-                    <source_model>Softaware\OrderTools\Model\Source\OrderNumberMode</source_model>
+                    <source_model>CommerceGears\OrderTools\Model\Source\OrderNumberMode</source_model>
                     <comment>Applies to new documents only. Existing numbers never change. Default: Magento default.</comment>
                 </field>
                 <field id="prefix" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Prefix</label>
-                    <backend_model>Softaware\OrderTools\Model\Config\Backend\Affix</backend_model>
+                    <backend_model>CommerceGears\OrderTools\Model\Config\Backend\Affix</backend_model>
                     <comment><![CDATA[For example <code>WEB-{yy}-</code>. Placeholders: <code>{store_id}</code> <code>{yyyy}</code> <code>{yy}</code> <code>{mm}</code> <code>{dd}</code>. Otherwise letters, digits, "-", "_" and "." only, up to 20 characters. Store views with the same prefix and suffix share one counter. Default: empty.]]></comment>
                     <validate>validate-length maximum-length-20</validate>
                     <depends><field id="mode">custom</field></depends>
                 </field>
                 <field id="suffix" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Suffix</label>
-                    <backend_model>Softaware\OrderTools\Model\Config\Backend\Affix</backend_model>
+                    <backend_model>CommerceGears\OrderTools\Model\Config\Backend\Affix</backend_model>
                     <comment>Same rules as the prefix. Default: empty.</comment>
                     <validate>validate-length maximum-length-20</validate>
                     <depends><field id="mode">custom</field></depends>
@@ -105,8 +105,8 @@
                 </field>
                 <field id="reset" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
                     <label>Restart Counter</label>
-                    <source_model>Softaware\OrderTools\Model\Source\CounterReset</source_model>
-                    <backend_model>Softaware\OrderTools\Model\Config\Backend\CounterReset</backend_model>
+                    <source_model>CommerceGears\OrderTools\Model\Source\CounterReset</source_model>
+                    <backend_model>CommerceGears\OrderTools\Model\Config\Backend\CounterReset</backend_model>
                     <comment><![CDATA[The counter restarts at the start value only if the number contains the period: <code>{yyyy}</code> or <code>{yy}</code> for every year, plus <code>{mm}</code> for every month. Otherwise it keeps counting, so numbers never repeat. Default scope only. Default: Never.]]></comment>
                     <depends><field id="mode">custom</field></depends>
                 </field>
@@ -115,19 +115,19 @@
                 <label>Invoice Numbers</label>
                 <field id="mode" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Numbering</label>
-                    <source_model>Softaware\OrderTools\Model\Source\DocumentNumberMode</source_model>
+                    <source_model>CommerceGears\OrderTools\Model\Source\DocumentNumberMode</source_model>
                     <comment>Applies to new documents only. Existing numbers never change. "Same as the order number" uses the order number, with -1, -2, ... for further documents of the same order. Default: Magento default.</comment>
                 </field>
                 <field id="prefix" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Prefix</label>
-                    <backend_model>Softaware\OrderTools\Model\Config\Backend\Affix</backend_model>
+                    <backend_model>CommerceGears\OrderTools\Model\Config\Backend\Affix</backend_model>
                     <comment><![CDATA[For example <code>WEB-{yy}-</code>. Placeholders: <code>{store_id}</code> <code>{yyyy}</code> <code>{yy}</code> <code>{mm}</code> <code>{dd}</code>. Otherwise letters, digits, "-", "_" and "." only, up to 20 characters. Store views with the same prefix and suffix share one counter. Default: empty.]]></comment>
                     <validate>validate-length maximum-length-20</validate>
                     <depends><field id="mode">custom</field></depends>
                 </field>
                 <field id="suffix" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Suffix</label>
-                    <backend_model>Softaware\OrderTools\Model\Config\Backend\Affix</backend_model>
+                    <backend_model>CommerceGears\OrderTools\Model\Config\Backend\Affix</backend_model>
                     <comment>Same rules as the prefix. Default: empty.</comment>
                     <validate>validate-length maximum-length-20</validate>
                     <depends><field id="mode">custom</field></depends>
@@ -152,8 +152,8 @@
                 </field>
                 <field id="reset" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
                     <label>Restart Counter</label>
-                    <source_model>Softaware\OrderTools\Model\Source\CounterReset</source_model>
-                    <backend_model>Softaware\OrderTools\Model\Config\Backend\CounterReset</backend_model>
+                    <source_model>CommerceGears\OrderTools\Model\Source\CounterReset</source_model>
+                    <backend_model>CommerceGears\OrderTools\Model\Config\Backend\CounterReset</backend_model>
                     <comment><![CDATA[The counter restarts at the start value only if the number contains the period: <code>{yyyy}</code> or <code>{yy}</code> for every year, plus <code>{mm}</code> for every month. Otherwise it keeps counting, so numbers never repeat. Default scope only. Default: Never.]]></comment>
                     <depends><field id="mode">custom</field></depends>
                 </field>
@@ -162,19 +162,19 @@
                 <label>Shipment Numbers</label>
                 <field id="mode" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Numbering</label>
-                    <source_model>Softaware\OrderTools\Model\Source\DocumentNumberMode</source_model>
+                    <source_model>CommerceGears\OrderTools\Model\Source\DocumentNumberMode</source_model>
                     <comment>Applies to new documents only. Existing numbers never change. "Same as the order number" uses the order number, with -1, -2, ... for further documents of the same order. Default: Magento default.</comment>
                 </field>
                 <field id="prefix" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Prefix</label>
-                    <backend_model>Softaware\OrderTools\Model\Config\Backend\Affix</backend_model>
+                    <backend_model>CommerceGears\OrderTools\Model\Config\Backend\Affix</backend_model>
                     <comment><![CDATA[For example <code>WEB-{yy}-</code>. Placeholders: <code>{store_id}</code> <code>{yyyy}</code> <code>{yy}</code> <code>{mm}</code> <code>{dd}</code>. Otherwise letters, digits, "-", "_" and "." only, up to 20 characters. Store views with the same prefix and suffix share one counter. Default: empty.]]></comment>
                     <validate>validate-length maximum-length-20</validate>
                     <depends><field id="mode">custom</field></depends>
                 </field>
                 <field id="suffix" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Suffix</label>
-                    <backend_model>Softaware\OrderTools\Model\Config\Backend\Affix</backend_model>
+                    <backend_model>CommerceGears\OrderTools\Model\Config\Backend\Affix</backend_model>
                     <comment>Same rules as the prefix. Default: empty.</comment>
                     <validate>validate-length maximum-length-20</validate>
                     <depends><field id="mode">custom</field></depends>
@@ -199,8 +199,8 @@
                 </field>
                 <field id="reset" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
                     <label>Restart Counter</label>
-                    <source_model>Softaware\OrderTools\Model\Source\CounterReset</source_model>
-                    <backend_model>Softaware\OrderTools\Model\Config\Backend\CounterReset</backend_model>
+                    <source_model>CommerceGears\OrderTools\Model\Source\CounterReset</source_model>
+                    <backend_model>CommerceGears\OrderTools\Model\Config\Backend\CounterReset</backend_model>
                     <comment><![CDATA[The counter restarts at the start value only if the number contains the period: <code>{yyyy}</code> or <code>{yy}</code> for every year, plus <code>{mm}</code> for every month. Otherwise it keeps counting, so numbers never repeat. Default scope only. Default: Never.]]></comment>
                     <depends><field id="mode">custom</field></depends>
                 </field>
@@ -209,19 +209,19 @@
                 <label>Credit Memo Numbers</label>
                 <field id="mode" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Numbering</label>
-                    <source_model>Softaware\OrderTools\Model\Source\DocumentNumberMode</source_model>
+                    <source_model>CommerceGears\OrderTools\Model\Source\DocumentNumberMode</source_model>
                     <comment>Applies to new documents only. Existing numbers never change. "Same as the order number" uses the order number, with -1, -2, ... for further documents of the same order. Default: Magento default.</comment>
                 </field>
                 <field id="prefix" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Prefix</label>
-                    <backend_model>Softaware\OrderTools\Model\Config\Backend\Affix</backend_model>
+                    <backend_model>CommerceGears\OrderTools\Model\Config\Backend\Affix</backend_model>
                     <comment><![CDATA[For example <code>WEB-{yy}-</code>. Placeholders: <code>{store_id}</code> <code>{yyyy}</code> <code>{yy}</code> <code>{mm}</code> <code>{dd}</code>. Otherwise letters, digits, "-", "_" and "." only, up to 20 characters. Store views with the same prefix and suffix share one counter. Default: empty.]]></comment>
                     <validate>validate-length maximum-length-20</validate>
                     <depends><field id="mode">custom</field></depends>
                 </field>
                 <field id="suffix" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Suffix</label>
-                    <backend_model>Softaware\OrderTools\Model\Config\Backend\Affix</backend_model>
+                    <backend_model>CommerceGears\OrderTools\Model\Config\Backend\Affix</backend_model>
                     <comment>Same rules as the prefix. Default: empty.</comment>
                     <validate>validate-length maximum-length-20</validate>
                     <depends><field id="mode">custom</field></depends>
@@ -246,8 +246,8 @@
                 </field>
                 <field id="reset" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
                     <label>Restart Counter</label>
-                    <source_model>Softaware\OrderTools\Model\Source\CounterReset</source_model>
-                    <backend_model>Softaware\OrderTools\Model\Config\Backend\CounterReset</backend_model>
+                    <source_model>CommerceGears\OrderTools\Model\Source\CounterReset</source_model>
+                    <backend_model>CommerceGears\OrderTools\Model\Config\Backend\CounterReset</backend_model>
                     <comment><![CDATA[The counter restarts at the start value only if the number contains the period: <code>{yyyy}</code> or <code>{yy}</code> for every year, plus <code>{mm}</code> for every month. Otherwise it keeps counting, so numbers never repeat. Default scope only. Default: Never.]]></comment>
                     <depends><field id="mode">custom</field></depends>
                 </field>

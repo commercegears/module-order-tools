@@ -1,23 +1,23 @@
 <?php
 /**
- * Softaware Order Tools
+ * CommerceGears Order Tools
  *
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\OrderTools\Controller\Adminhtml\Deleted;
+namespace CommerceGears\OrderTools\Controller\Adminhtml\Deleted;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\View\Result\Page;
-use Softaware\OrderTools\Model\ResourceModel\DeletedOrder as DeletedOrderResource;
+use CommerceGears\OrderTools\Model\ResourceModel\DeletedOrder as DeletedOrderResource;
 
 class Index extends Action implements HttpGetActionInterface
 {
-    public const ADMIN_RESOURCE = 'Softaware_OrderTools::deleted_log';
+    public const ADMIN_RESOURCE = 'CommerceGears_OrderTools::deleted_log';
 
     public function __construct(
         Context $context,
@@ -31,9 +31,9 @@ class Index extends Action implements HttpGetActionInterface
         /** @var Page $page */
         $page = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
         if (!$this->hasEntries()) {
-            $page->addHandle('softaware_ordertools_deleted_index_empty');
+            $page->addHandle('commercegears_ordertools_deleted_index_empty');
         }
-        $page->setActiveMenu('Softaware_OrderTools::deleted_log');
+        $page->setActiveMenu('CommerceGears_OrderTools::deleted_log');
         $page->getConfig()->getTitle()->prepend(__('Deleted Orders Log'));
         return $page;
     }

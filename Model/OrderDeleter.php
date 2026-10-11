@@ -1,12 +1,12 @@
 <?php
 /**
- * Softaware Order Tools
+ * CommerceGears Order Tools
  *
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\OrderTools\Model;
+namespace CommerceGears\OrderTools\Model;
 
 use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\Exception\LocalizedException;
@@ -19,7 +19,7 @@ use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Api\ShipmentRepositoryInterface;
 use Magento\Sales\Model\Order;
 use Psr\Log\LoggerInterface;
-use Softaware\OrderTools\Model\ResourceModel\DeletedOrder as DeletedOrderResource;
+use CommerceGears\OrderTools\Model\ResourceModel\DeletedOrder as DeletedOrderResource;
 
 /**
  * Deletes orders with all their documents, guarded by the settings, and writes the deleted orders log.
@@ -54,7 +54,7 @@ class OrderDeleter
     {
         if (!$this->config->isDeleteEnabled()) {
             throw new LocalizedException(
-                __('Deleting orders is switched off in Stores > Configuration > Softaware > Order Tools.')
+                __('Deleting orders is switched off in Stores > Configuration > CommerceGears > Order Tools.')
             );
         }
         $orderIds = array_values(array_unique(array_filter(array_map('intval', $orderIds), fn ($id) => $id > 0)));
@@ -81,7 +81,7 @@ class OrderDeleter
                     $result['failed']['ID ' . $orderId] = (string)__('Order not found.');
                     continue;
                 } catch (\Throwable $e) {
-                    $this->logger->error('Softaware_OrderTools: loading order ' . $orderId . ' failed: ' . $e->getMessage());
+                    $this->logger->error('CommerceGears_OrderTools: loading order ' . $orderId . ' failed: ' . $e->getMessage());
                     $result['failed']['ID ' . $orderId] = (string)__('The order could not be loaded. See var/log/system.log.');
                     continue;
                 }
@@ -94,7 +94,7 @@ class OrderDeleter
                     $this->deleteOne($order, $actor);
                     $result['deleted'][] = $label;
                 } catch (\Throwable $e) {
-                    $this->logger->error('Softaware_OrderTools: deleting order ' . $orderId . ' failed: ' . $e->getMessage());
+                    $this->logger->error('CommerceGears_OrderTools: deleting order ' . $orderId . ' failed: ' . $e->getMessage());
                     $result['failed'][$label] = $e instanceof LocalizedException
                         ? $e->getMessage()
                         : (string)__('Database error, nothing was deleted. See var/log/system.log.');

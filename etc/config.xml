@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
-        <softaware_ordertools>
+        <commercegears_ordertools>
             <general>
                 <enabled>1</enabled>
             </general>
@@ -14,8 +14,8 @@
                 <statuses>canceled</statuses>
                 <customer_email>hash</customer_email>
             </delete>
-        </softaware_ordertools>
-        <softaware_ordertools_numbers>
+        </commercegears_ordertools>
+        <commercegears_ordertools_numbers>
             <order>
                 <mode>default</mode>
                 <prefix/>
@@ -52,6 +52,6 @@
                 <step>1</step>
                 <reset>never</reset>
             </creditmemo>
-        </softaware_ordertools_numbers>
+        </commercegears_ordertools_numbers>
     </default>
 </config>

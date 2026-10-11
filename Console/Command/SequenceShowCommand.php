@@ -1,16 +1,16 @@
 <?php
 /**
- * Softaware Order Tools
+ * CommerceGears Order Tools
  *
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\OrderTools\Console\Command;
+namespace CommerceGears\OrderTools\Console\Command;
 
 use Magento\Store\Model\StoreManagerInterface;
-use Softaware\OrderTools\Model\Config;
-use Softaware\OrderTools\Model\Numbering\NumberGenerator;
+use CommerceGears\OrderTools\Model\Config;
+use CommerceGears\OrderTools\Model\Numbering\NumberGenerator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
@@ -32,7 +32,7 @@ class SequenceShowCommand extends Command
 
     protected function configure(): void
     {
-        $this->setName('softaware:order-tools:sequence:show')
+        $this->setName('commercegears:order-tools:sequence:show')
             ->setDescription('Show the last and next order, invoice, shipment and credit memo numbers per store view')
             ->addOption('store', null, InputOption::VALUE_REQUIRED, 'Store view ID or code');
     }

@@ -1,17 +1,17 @@
 <?php
 /**
- * Softaware Order Tools
+ * CommerceGears Order Tools
  *
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\OrderTools\Plugin;
+namespace CommerceGears\OrderTools\Plugin;
 
 use Magento\Framework\DB\Sequence\SequenceInterface;
 use Magento\SalesSequence\Model\Manager;
-use Softaware\OrderTools\Model\Config;
-use Softaware\OrderTools\Model\Numbering\CustomSequenceFactory;
+use CommerceGears\OrderTools\Model\Config;
+use CommerceGears\OrderTools\Model\Numbering\CustomSequenceFactory;
 
 /**
  * Hands Magento a custom sequence for order/invoice/shipment/credit memo numbers where the store view uses a

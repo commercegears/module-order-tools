@@ -5,7 +5,7 @@ numbers, extra columns in the order grid, a test order flag and guarded order de
 Everything that changes behaviour is off by default. This guide covers installation, configuration and
 day-to-day use.
 
-- Admin demo: https://demo.softawarecommerce.com/try-admin/order-tools
+- Admin demo: https://demo.commercegears.com/try-admin/order-tools
 - Changelog: [CHANGELOG.md](../CHANGELOG.md) · Questions: [FAQ](faq.md)
 
 ![Document number settings with the Next Numbers table](images/document-numbers.png)
@@ -17,38 +17,38 @@ day-to-day use.
 | Magento | Open Source or Adobe Commerce 2.4.7 to 2.4.9 |
 | PHP | 8.2 to 8.5 |
 | Storefront | None: the module is admin only. The numbers appear wherever Magento shows them, on Luma, Hyvä and other themes alike. |
-| Other | `softaware/module-core` (installed automatically) |
+| Other | `commercegears/module-core` (installed automatically) |
 
 ## 2. Installation
 
-Install with Composer from repo.softawarecommerce.com. The access keys are in your account on
-softawarecommerce.com; see [Composer access](https://softawarecommerce.com/shop/composer-access/) for details.
+Install with Composer from repo.commercegears.com. The access keys are in your account on
+commercegears.com; see [Composer access](https://commercegears.com/shop/composer-access/) for details.
 
 ```bash
-composer config repositories.softaware composer https://repo.softawarecommerce.com
-composer config --auth http-basic.repo.softawarecommerce.com PUBLIC_KEY PRIVATE_KEY
-composer require softaware/module-order-tools
+composer config repositories.commercegears composer https://repo.commercegears.com
+composer config --auth http-basic.repo.commercegears.com PUBLIC_KEY PRIVATE_KEY
+composer require commercegears/module-order-tools
 bin/magento setup:upgrade
 bin/magento setup:di:compile            # production mode only
 bin/magento setup:static-content:deploy # production mode only
 bin/magento cache:flush
-bin/magento softaware:order-tools:grid:backfill
+bin/magento commercegears:order-tools:grid:backfill
 ```
 
 The last command fills the new order grid columns for orders placed before the installation (section 5). Orders
 saved later are handled by Magento's own grid indexer.
 
-To update later: `composer update softaware/module-order-tools`, then the same `bin/magento` commands.
+To update later: `composer update commercegears/module-order-tools`, then the same `bin/magento` commands.
 
-After installation the admin menu has **Softaware > Order Tools** with **Deleted Orders Log**, **Document Numbers**
+After installation the admin menu has **CommerceGears > Order Tools** with **Deleted Orders Log**, **Document Numbers**
 and **Settings**. Nothing changes in your store until you switch a feature on.
 
 ## 3. Settings
 
-The settings are in two sections of the Softaware tab under **Stores > Configuration**:
+The settings are in two sections of the CommerceGears tab under **Stores > Configuration**:
 
-- **Softaware > Order Tools**: the master switch, the order grid and deleting orders (default scope only).
-- **Softaware > Order Tools: Document Numbers**: numbering per document type (default, website or store view
+- **CommerceGears > Order Tools**: the master switch, the order grid and deleting orders (default scope only).
+- **CommerceGears > Order Tools: Document Numbers**: numbering per document type (default, website or store view
   scope).
 
 ### General
@@ -76,7 +76,7 @@ The settings are in two sections of the Softaware tab under **Stores > Configura
 
 ## 4. Document numbers
 
-Open **Stores > Configuration > Softaware > Order Tools: Document Numbers** (or **Softaware > Order Tools >
+Open **Stores > Configuration > CommerceGears > Order Tools: Document Numbers** (or **CommerceGears > Order Tools >
 Document Numbers**). There is one group each for **Order Numbers**, **Invoice Numbers**, **Shipment Numbers** and
 **Credit Memo Numbers**, and a **Next Numbers** table at the top.
 
@@ -110,9 +110,9 @@ Prefix `WEB-{yy}-`, minimum counter length 6, start value 1: the orders are numb
 `WEB-26-000002`, and so on. With the same settings from the command line:
 
 ```bash
-bin/magento config:set softaware_ordertools_numbers/order/mode custom
-bin/magento config:set softaware_ordertools_numbers/order/prefix 'WEB-{yy}-'
-bin/magento config:set softaware_ordertools_numbers/order/length 6
+bin/magento config:set commercegears_ordertools_numbers/order/mode custom
+bin/magento config:set commercegears_ordertools_numbers/order/prefix 'WEB-{yy}-'
+bin/magento config:set commercegears_ordertools_numbers/order/length 6
 ```
 
 ### Same as the order number
@@ -178,7 +178,7 @@ Deleting orders is permanent. It is off by default and protected by several guar
 every order, whatever the admin page showed:
 
 1. **Allow Deleting Orders** must be **Yes** (and Order Tools enabled).
-2. The admin role needs the ACL resource **Softaware > Order Tools > Delete Orders**. It is not added to any role
+2. The admin role needs the ACL resource **CommerceGears > Order Tools > Delete Orders**. It is not added to any role
    automatically; roles with access to all resources have it.
 3. The order's current status must be one of **Only Orders With These Statuses** (default: Canceled only). The
    status is checked again with a row lock inside the delete transaction, so an order whose status changed in the
@@ -215,7 +215,7 @@ reports keep their aggregated figures until they are refreshed.
 
 ![Deleted Orders Log](images/deleted-orders-log.png)
 
-**Softaware > Order Tools > Deleted Orders Log** lists every deleted order, newest first: deleted at, order number,
+**CommerceGears > Order Tools > Deleted Orders Log** lists every deleted order, newest first: deleted at, order number,
 store view, status, grand total, customer email, test order flag, the deleted document numbers and the admin user.
 Order ID, currency, order date and IP address are available under **Columns**.
 
@@ -232,8 +232,8 @@ Order ID, currency, order date and IP address are available under **Columns**.
 ## 8. Command line
 
 ```bash
-bin/magento softaware:order-tools:sequence:show [--store=<id|code>]
-bin/magento softaware:order-tools:grid:backfill [--batch-size=500]
+bin/magento commercegears:order-tools:sequence:show [--store=<id|code>]
+bin/magento commercegears:order-tools:grid:backfill [--batch-size=500]
 ```
 
 - `sequence:show` lists the numbering, last number and next number of each document type per store view (for
@@ -246,7 +246,7 @@ There is no command for deleting orders, on purpose: deleting is only possible i
 
 ## 9. Permissions (ACL)
 
-Under **System > Permissions > User Roles > Role Resources > Softaware > Order Tools**:
+Under **System > Permissions > User Roles > Role Resources > CommerceGears > Order Tools**:
 
 | Resource | Allows |
 | --- | --- |
@@ -265,7 +265,7 @@ with access to all websites (admin role scopes were not tested with deletion).
 | --- | --- |
 | New orders still have Magento's numbers | Check **Order Tools > General > Enabled** and **Numbering = Custom format** for the store view of the order, then look at the Next Numbers table. If a custom number could not be built, the reason is in `var/log/system.log`. |
 | A gap in the number series | Like Magento's own sequence, a number taken by a checkout that then fails is not reused. |
-| The extra grid columns are empty for older orders | Run `bin/magento softaware:order-tools:grid:backfill`. |
+| The extra grid columns are empty for older orders | Run `bin/magento commercegears:order-tools:grid:backfill`. |
 | Delete Permanently is missing | Check **Allow Deleting Orders**, the role's **Delete Orders** permission and the order's status against **Only Orders With These Statuses**. |
 | "Not deleted because of their status" | The order's status is not in the allowed list. Cancel the order first, or add the status in the settings. |
 | The IP address in the log is the proxy's | The IP is taken from `REMOTE_ADDR`. Behind a proxy or CDN, configure your web server's real IP module. |
@@ -281,13 +281,13 @@ with access to all websites (admin role scopes were not tested with deletion).
 ## 12. Uninstall
 
 ```bash
-bin/magento module:disable Softaware_OrderTools
-composer remove softaware/module-order-tools
+bin/magento module:disable CommerceGears_OrderTools
+composer remove commercegears/module-order-tools
 bin/magento setup:upgrade
 ```
 
 Existing document numbers stay as they are; new documents use Magento's own sequence again.
 
 Export the Deleted Orders Log as CSV first if you want to keep it: once the module is disabled, Magento's
-declarative schema can drop the module's tables (`softaware_ordertools_counter`, `softaware_ordertools_deleted_order`)
+declarative schema can drop the module's tables (`commercegears_ordertools_counter`, `commercegears_ordertools_deleted_order`)
 and the `sot_*` columns of `sales_order` and `sales_order_grid` on the next `setup:upgrade`.

@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <type name="Magento\Sales\Block\Adminhtml\Order\View">
-        <plugin name="softaware_ordertools_delete_button" type="Softaware\OrderTools\Plugin\Adminhtml\OrderViewDeleteButton"/>
+        <plugin name="commercegears_ordertools_delete_button" type="CommerceGears\OrderTools\Plugin\Adminhtml\OrderViewDeleteButton"/>
     </type>
-    <virtualType name="Softaware\OrderTools\Model\Export\DeletedOrdersCsv" type="Magento\Ui\Model\Export\ConvertToCsv">
+    <virtualType name="CommerceGears\OrderTools\Model\Export\DeletedOrdersCsv" type="Magento\Ui\Model\Export\ConvertToCsv">
         <arguments>
-            <argument name="metadataProvider" xsi:type="object">Softaware\OrderTools\Model\Export\SafeMetadataProvider</argument>
+            <argument name="metadataProvider" xsi:type="object">CommerceGears\OrderTools\Model\Export\SafeMetadataProvider</argument>
         </arguments>
     </virtualType>
-    <type name="Softaware\OrderTools\Controller\Adminhtml\Deleted\ExportCsv">
+    <type name="CommerceGears\OrderTools\Controller\Adminhtml\Deleted\ExportCsv">
         <arguments>
-            <argument name="converter" xsi:type="object">Softaware\OrderTools\Model\Export\DeletedOrdersCsv</argument>
+            <argument name="converter" xsi:type="object">CommerceGears\OrderTools\Model\Export\DeletedOrdersCsv</argument>
         </arguments>
     </type>
 </config>

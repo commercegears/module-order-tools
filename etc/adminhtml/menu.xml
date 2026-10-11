@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="Softaware_OrderTools::order_tools" title="Order Tools" translate="title" module="Softaware_OrderTools"
-             sortOrder="60" parent="Softaware_Core::core" resource="Softaware_OrderTools::order_tools"/>
-        <add id="Softaware_OrderTools::deleted_log" title="Deleted Orders Log" translate="title" module="Softaware_OrderTools"
-             sortOrder="10" parent="Softaware_OrderTools::order_tools" action="softaware_ordertools/deleted/index"
-             resource="Softaware_OrderTools::deleted_log"/>
-        <add id="Softaware_OrderTools::config_numbers" title="Document Numbers" translate="title" module="Softaware_OrderTools"
-             sortOrder="20" parent="Softaware_OrderTools::order_tools"
-             action="adminhtml/system_config/edit/section/softaware_ordertools_numbers" resource="Softaware_OrderTools::config_numbers"/>
-        <add id="Softaware_OrderTools::config" title="Settings" translate="title" module="Softaware_OrderTools"
-             sortOrder="30" parent="Softaware_OrderTools::order_tools"
-             action="adminhtml/system_config/edit/section/softaware_ordertools" resource="Softaware_OrderTools::config"/>
+        <add id="CommerceGears_OrderTools::order_tools" title="Order Tools" translate="title" module="CommerceGears_OrderTools"
+             sortOrder="60" parent="CommerceGears_Core::core" resource="CommerceGears_OrderTools::order_tools"/>
+        <add id="CommerceGears_OrderTools::deleted_log" title="Deleted Orders Log" translate="title" module="CommerceGears_OrderTools"
+             sortOrder="10" parent="CommerceGears_OrderTools::order_tools" action="commercegears_ordertools/deleted/index"
+             resource="CommerceGears_OrderTools::deleted_log"/>
+        <add id="CommerceGears_OrderTools::config_numbers" title="Document Numbers" translate="title" module="CommerceGears_OrderTools"
+             sortOrder="20" parent="CommerceGears_OrderTools::order_tools"
+             action="adminhtml/system_config/edit/section/commercegears_ordertools_numbers" resource="CommerceGears_OrderTools::config_numbers"/>
+        <add id="CommerceGears_OrderTools::config" title="Settings" translate="title" module="CommerceGears_OrderTools"
+             sortOrder="30" parent="CommerceGears_OrderTools::order_tools"
+             action="adminhtml/system_config/edit/section/commercegears_ordertools" resource="CommerceGears_OrderTools::config"/>
     </menu>
 </config>

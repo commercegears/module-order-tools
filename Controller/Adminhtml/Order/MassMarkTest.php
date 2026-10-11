@@ -1,12 +1,12 @@
 <?php
 /**
- * Softaware Order Tools
+ * CommerceGears Order Tools
  *
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\OrderTools\Controller\Adminhtml\Order;
+namespace CommerceGears\OrderTools\Controller\Adminhtml\Order;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
@@ -15,13 +15,13 @@ use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Sales\Model\ResourceModel\Order\CollectionFactory;
 use Magento\Ui\Component\MassAction\Filter;
-use Softaware\OrderTools\Model\Config;
-use Softaware\OrderTools\Model\OrderDeleter;
-use Softaware\OrderTools\Model\TestFlag;
+use CommerceGears\OrderTools\Model\Config;
+use CommerceGears\OrderTools\Model\OrderDeleter;
+use CommerceGears\OrderTools\Model\TestFlag;
 
 class MassMarkTest extends Action implements HttpPostActionInterface
 {
-    public const ADMIN_RESOURCE = 'Softaware_OrderTools::test_flag';
+    public const ADMIN_RESOURCE = 'CommerceGears_OrderTools::test_flag';
 
     public function __construct(
         Context $context,

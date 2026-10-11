@@ -2,24 +2,24 @@
 <listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">softaware_ordertools_deleted_listing.softaware_ordertools_deleted_listing_data_source</item>
+            <item name="provider" xsi:type="string">commercegears_ordertools_deleted_listing.commercegears_ordertools_deleted_listing_data_source</item>
         </item>
     </argument>
     <settings>
-        <spinner>softaware_ordertools_deleted_listing_columns</spinner>
+        <spinner>commercegears_ordertools_deleted_listing_columns</spinner>
         <deps>
-            <dep>softaware_ordertools_deleted_listing.softaware_ordertools_deleted_listing_data_source</dep>
+            <dep>commercegears_ordertools_deleted_listing.commercegears_ordertools_deleted_listing_data_source</dep>
         </deps>
     </settings>
-    <dataSource name="softaware_ordertools_deleted_listing_data_source" component="Magento_Ui/js/grid/provider">
+    <dataSource name="commercegears_ordertools_deleted_listing_data_source" component="Magento_Ui/js/grid/provider">
         <settings>
             <storageConfig>
                 <param name="indexField" xsi:type="string">log_id</param>
             </storageConfig>
             <updateUrl path="mui/index/render"/>
         </settings>
-        <aclResource>Softaware_OrderTools::deleted_log</aclResource>
-        <dataProvider class="Softaware\OrderTools\Ui\DataProvider\DeletedOrderDataProvider" name="softaware_ordertools_deleted_listing_data_source">
+        <aclResource>CommerceGears_OrderTools::deleted_log</aclResource>
+        <dataProvider class="CommerceGears\OrderTools\Ui\DataProvider\DeletedOrderDataProvider" name="commercegears_ordertools_deleted_listing_data_source">
             <settings>
                 <requestFieldName>id</requestFieldName>
                 <primaryFieldName>log_id</primaryFieldName>
@@ -33,11 +33,11 @@
         <bookmark name="bookmarks"/>
         <columnsControls name="columns_controls"/>
         <filterSearch name="fulltext"/>
-        <exportButton name="export_button" class="Softaware\OrderTools\Ui\Component\CsvExportButton"/>
+        <exportButton name="export_button" class="CommerceGears\OrderTools\Ui\Component\CsvExportButton"/>
         <filters name="listing_filters"/>
         <paging name="listing_paging"/>
     </listingToolbar>
-    <columns name="softaware_ordertools_deleted_listing_columns">
+    <columns name="commercegears_ordertools_deleted_listing_columns">
         <column name="log_id" sortOrder="10">
             <settings>
                 <filter>textRange</filter>
@@ -73,7 +73,7 @@
                 <label translate="true">Store View</label>
             </settings>
         </column>
-        <column name="status" class="Softaware\OrderTools\Ui\Component\Listing\Column\OrderStatus" sortOrder="60">
+        <column name="status" class="CommerceGears\OrderTools\Ui\Component\Listing\Column\OrderStatus" sortOrder="60">
             <settings>
                 <filter>text</filter>
                 <label translate="true">Status</label>
@@ -92,7 +92,7 @@
                 <visible>false</visible>
             </settings>
         </column>
-        <column name="customer_email" class="Softaware\OrderTools\Ui\Component\Listing\Column\CustomerEmail" sortOrder="90">
+        <column name="customer_email" class="CommerceGears\OrderTools\Ui\Component\Listing\Column\CustomerEmail" sortOrder="90">
             <settings>
                 <filter>text</filter>
                 <label translate="true">Customer Email</label>

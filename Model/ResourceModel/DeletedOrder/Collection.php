@@ -1,16 +1,16 @@
 <?php
 /**
- * Softaware Order Tools
+ * CommerceGears Order Tools
  *
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\OrderTools\Model\ResourceModel\DeletedOrder;
+namespace CommerceGears\OrderTools\Model\ResourceModel\DeletedOrder;
 
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
-use Softaware\OrderTools\Model\DeletedOrder;
-use Softaware\OrderTools\Model\ResourceModel\DeletedOrder as Resource;
+use CommerceGears\OrderTools\Model\DeletedOrder;
+use CommerceGears\OrderTools\Model\ResourceModel\DeletedOrder as Resource;
 
 class Collection extends AbstractCollection
 {

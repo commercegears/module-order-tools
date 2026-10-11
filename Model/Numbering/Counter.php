@@ -1,12 +1,12 @@
 <?php
 /**
- * Softaware Order Tools
+ * CommerceGears Order Tools
  *
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\OrderTools\Model\Numbering;
+namespace CommerceGears\OrderTools\Model\Numbering;
 
 use Magento\Framework\App\DeploymentConfig;
 use Magento\Framework\App\ResourceConnection;
@@ -16,7 +16,7 @@ use Magento\Framework\DB\Adapter\AdapterInterface;
 use Magento\Framework\App\ResourceConnection\ConnectionFactory;
 
 /**
- * Atomic document counters (table softaware_ordertools_counter).
+ * Atomic document counters (table commercegears_ordertools_counter).
  *
  * The increment is one INSERT ... ON DUPLICATE KEY UPDATE statement, so two requests can never get the same value.
  * It runs on its own database connection (auto-commit): sales documents are saved inside transactions, and taking
@@ -26,7 +26,7 @@ use Magento\Framework\App\ResourceConnection\ConnectionFactory;
  */
 class Counter
 {
-    public const TABLE = 'softaware_ordertools_counter';
+    public const TABLE = 'commercegears_ordertools_counter';
 
     private ?AdapterInterface $connection = null;
 

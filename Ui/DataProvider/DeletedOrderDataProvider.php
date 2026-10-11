@@ -1,17 +1,17 @@
 <?php
 /**
- * Softaware Order Tools
+ * CommerceGears Order Tools
  *
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\OrderTools\Ui\DataProvider;
+namespace CommerceGears\OrderTools\Ui\DataProvider;
 
 use Magento\Framework\Api\Filter;
 use Magento\Framework\Data\Collection\AbstractDb;
 use Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider;
-use Softaware\OrderTools\Model\OrderDeleter;
+use CommerceGears\OrderTools\Model\OrderDeleter;
 
 /**
  * Deleted orders log. The keyword search ("Search by keyword") looks for the text in the order number, admin user

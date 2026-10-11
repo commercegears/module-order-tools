@@ -1,12 +1,12 @@
 <?php
 /**
- * Softaware Order Tools
+ * CommerceGears Order Tools
  *
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\OrderTools\Controller\Adminhtml\Deleted;
+namespace CommerceGears\OrderTools\Controller\Adminhtml\Deleted;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
@@ -23,8 +23,8 @@ use Magento\Ui\Model\Export\ConvertToCsv;
  */
 class ExportCsv extends Action implements HttpGetActionInterface
 {
-    public const ADMIN_RESOURCE = 'Softaware_OrderTools::deleted_log';
-    public const NAMESPACE = 'softaware_ordertools_deleted_listing';
+    public const ADMIN_RESOURCE = 'CommerceGears_OrderTools::deleted_log';
+    public const NAMESPACE = 'commercegears_ordertools_deleted_listing';
 
     public function __construct(
         Context $context,

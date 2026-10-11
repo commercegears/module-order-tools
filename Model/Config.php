@@ -1,16 +1,16 @@
 <?php
 /**
- * Softaware Order Tools
+ * CommerceGears Order Tools
  *
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\OrderTools\Model;
+namespace CommerceGears\OrderTools\Model;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
-use Softaware\OrderTools\Model\Numbering\Settings;
+use CommerceGears\OrderTools\Model\Numbering\Settings;
 
 /**
  * Typed access to the module settings.
@@ -26,13 +26,13 @@ class Config
     public const EMAIL_KEEP = 'keep';
     public const EMAIL_HASH = 'hash';
 
-    private const XML_ENABLED = 'softaware_ordertools/general/enabled';
-    private const XML_GRID_COLUMNS = 'softaware_ordertools/grid/columns';
-    private const XML_TEST_FLAG = 'softaware_ordertools/grid/test_flag';
-    private const XML_DELETE_ENABLED = 'softaware_ordertools/delete/enabled';
-    private const XML_DELETE_STATUSES = 'softaware_ordertools/delete/statuses';
-    private const XML_DELETE_EMAIL = 'softaware_ordertools/delete/customer_email';
-    private const XML_NUMBERS = 'softaware_ordertools_numbers/';
+    private const XML_ENABLED = 'commercegears_ordertools/general/enabled';
+    private const XML_GRID_COLUMNS = 'commercegears_ordertools/grid/columns';
+    private const XML_TEST_FLAG = 'commercegears_ordertools/grid/test_flag';
+    private const XML_DELETE_ENABLED = 'commercegears_ordertools/delete/enabled';
+    private const XML_DELETE_STATUSES = 'commercegears_ordertools/delete/statuses';
+    private const XML_DELETE_EMAIL = 'commercegears_ordertools/delete/customer_email';
+    private const XML_NUMBERS = 'commercegears_ordertools_numbers/';
 
     public function __construct(
         private readonly ScopeConfigInterface $scopeConfig

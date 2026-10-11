@@ -1,17 +1,17 @@
 <?php
 /**
- * Softaware Order Tools
+ * CommerceGears Order Tools
  *
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\OrderTools\Ui\Component\Listing\Column;
+namespace CommerceGears\OrderTools\Ui\Component\Listing\Column;
 
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Ui\Component\Listing\Columns\Column;
-use Softaware\OrderTools\Model\Source\OrderStatus as OrderStatusSource;
+use CommerceGears\OrderTools\Model\Source\OrderStatus as OrderStatusSource;
 
 /**
  * Deleted orders log: shows the status label (e.g. "Canceled") instead of its code. A status that no longer exists

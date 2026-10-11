@@ -1,5 +1,5 @@
 /**
- * Softaware Order Tools: "Delete Permanently" on the order page. Asks for confirmation in Magento's confirm dialog,
+ * CommerceGears Order Tools: "Delete Permanently" on the order page. Asks for confirmation in Magento's confirm dialog,
  * then sends a POST with the form key.
  */
 define([

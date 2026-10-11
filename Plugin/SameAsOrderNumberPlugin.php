@@ -1,17 +1,17 @@
 <?php
 /**
- * Softaware Order Tools
+ * CommerceGears Order Tools
  *
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\OrderTools\Plugin;
+namespace CommerceGears\OrderTools\Plugin;
 
 use Magento\Framework\Model\AbstractModel;
 use Magento\Sales\Model\ResourceModel\EntityAbstract;
-use Softaware\OrderTools\Model\Config;
-use Softaware\OrderTools\Model\Numbering\NumberGenerator;
+use CommerceGears\OrderTools\Model\Config;
+use CommerceGears\OrderTools\Model\Numbering\NumberGenerator;
 
 /**
  * "Same as the order number" for invoices, shipments and credit memos: sets the number before Magento's resource

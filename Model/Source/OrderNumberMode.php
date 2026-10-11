@@ -1,15 +1,15 @@
 <?php
 /**
- * Softaware Order Tools
+ * CommerceGears Order Tools
  *
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\OrderTools\Model\Source;
+namespace CommerceGears\OrderTools\Model\Source;
 
 use Magento\Framework\Data\OptionSourceInterface;
-use Softaware\OrderTools\Model\Config;
+use CommerceGears\OrderTools\Model\Config;
 
 class OrderNumberMode implements OptionSourceInterface
 {

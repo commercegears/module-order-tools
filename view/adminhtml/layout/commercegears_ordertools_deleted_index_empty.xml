@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * CommerceGears Order Tools
+ *
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="commercegears.ordertools.deleted.intro" remove="true"/>
+        <referenceBlock name="commercegears_ordertools_deleted_listing" remove="true"/>
+        <referenceContainer name="content">
+            <block class="Magento\Backend\Block\Template" name="commercegears.ordertools.deleted.empty" template="CommerceGears_OrderTools::deleted/empty.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">CommerceGears\OrderTools\ViewModel\DeletedLog</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,27 +1,27 @@
 <?php
 /**
- * Softaware Order Tools
+ * CommerceGears Order Tools
  *
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\OrderTools\Controller\Adminhtml\Order;
+namespace CommerceGears\OrderTools\Controller\Adminhtml\Order;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Exception\LocalizedException;
-use Softaware\OrderTools\Model\DeleteMessages;
-use Softaware\OrderTools\Model\OrderDeleter;
+use CommerceGears\OrderTools\Model\DeleteMessages;
+use CommerceGears\OrderTools\Model\OrderDeleter;
 
 /**
  * "Delete Permanently" button on the order page. POST with form key only.
  */
 class Delete extends Action implements HttpPostActionInterface
 {
-    public const ADMIN_RESOURCE = 'Softaware_OrderTools::delete';
+    public const ADMIN_RESOURCE = 'CommerceGears_OrderTools::delete';
 
     public function __construct(
         Context $context,

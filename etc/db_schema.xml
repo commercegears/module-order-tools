@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
-    <table name="softaware_ordertools_counter" resource="sales" engine="innodb" comment="Softaware Order Tools: document number counters">
+    <table name="commercegears_ordertools_counter" resource="sales" engine="innodb" comment="CommerceGears Order Tools: document number counters">
         <column xsi:type="varchar" name="entity_type" nullable="false" length="32" comment="order, invoice, shipment or creditmemo"/>
         <column xsi:type="varchar" name="pattern" nullable="false" length="64" comment="Prefix|suffix the counter belongs to"/>
         <column xsi:type="varchar" name="period" nullable="false" length="16" default="" comment="Empty, Y2026 or M2026-10"/>
@@ -12,7 +12,7 @@
             <column name="period"/>
         </constraint>
     </table>
-    <table name="softaware_ordertools_deleted_order" resource="sales" engine="innodb" comment="Softaware Order Tools: deleted orders log">
+    <table name="commercegears_ordertools_deleted_order" resource="sales" engine="innodb" comment="CommerceGears Order Tools: deleted orders log">
         <column xsi:type="int" name="log_id" unsigned="true" nullable="false" identity="true" comment="Log ID"/>
         <column xsi:type="int" name="order_id" unsigned="true" nullable="false" comment="Former order entity ID"/>
         <column xsi:type="varchar" name="increment_id" nullable="true" length="50" comment="Order number"/>
@@ -32,21 +32,21 @@
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="log_id"/>
         </constraint>
-        <index referenceId="SOFTAWARE_ORDERTOOLS_DELETED_ORDER_INCREMENT_ID" indexType="btree">
+        <index referenceId="COMMERCEGEARS_ORDERTOOLS_DELETED_ORDER_INCREMENT_ID" indexType="btree">
             <column name="increment_id"/>
         </index>
-        <index referenceId="SOFTAWARE_ORDERTOOLS_DELETED_ORDER_DELETED_AT" indexType="btree">
+        <index referenceId="COMMERCEGEARS_ORDERTOOLS_DELETED_ORDER_DELETED_AT" indexType="btree">
             <column name="deleted_at"/>
         </index>
     </table>
     <table name="sales_order" resource="sales">
-        <column xsi:type="smallint" name="sot_is_test" unsigned="true" nullable="false" default="0" comment="Softaware Order Tools: test order"/>
+        <column xsi:type="smallint" name="sot_is_test" unsigned="true" nullable="false" default="0" comment="CommerceGears Order Tools: test order"/>
     </table>
     <table name="sales_order_grid" resource="sales">
-        <column xsi:type="text" name="sot_items" nullable="true" comment="Softaware Order Tools: SKU x qty"/>
-        <column xsi:type="varchar" name="sot_coupon_code" nullable="true" length="255" comment="Softaware Order Tools: coupon code"/>
-        <column xsi:type="varchar" name="sot_shipping_country" nullable="true" length="2" comment="Softaware Order Tools: shipping country"/>
-        <column xsi:type="text" name="sot_customer_note" nullable="true" comment="Softaware Order Tools: customer note"/>
-        <column xsi:type="smallint" name="sot_is_test" unsigned="true" nullable="false" default="0" comment="Softaware Order Tools: test order"/>
+        <column xsi:type="text" name="sot_items" nullable="true" comment="CommerceGears Order Tools: SKU x qty"/>
+        <column xsi:type="varchar" name="sot_coupon_code" nullable="true" length="255" comment="CommerceGears Order Tools: coupon code"/>
+        <column xsi:type="varchar" name="sot_shipping_country" nullable="true" length="2" comment="CommerceGears Order Tools: shipping country"/>
+        <column xsi:type="text" name="sot_customer_note" nullable="true" comment="CommerceGears Order Tools: customer note"/>
+        <column xsi:type="smallint" name="sot_is_test" unsigned="true" nullable="false" default="0" comment="CommerceGears Order Tools: test order"/>
     </table>
 </schema>

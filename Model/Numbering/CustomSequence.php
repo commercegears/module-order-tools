@@ -1,12 +1,12 @@
 <?php
 /**
- * Softaware Order Tools
+ * CommerceGears Order Tools
  *
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\OrderTools\Model\Numbering;
+namespace CommerceGears\OrderTools\Model\Numbering;
 
 use Magento\Framework\DB\Sequence\SequenceInterface;
 use Psr\Log\LoggerInterface;
@@ -36,7 +36,7 @@ class CustomSequence implements SequenceInterface
             $this->current = $this->generator->next($this->settings);
         } catch (\Throwable $e) {
             $this->logger->error(
-                'Softaware_OrderTools: custom ' . $this->settings->entityType . ' number failed, Magento number used: '
+                'CommerceGears_OrderTools: custom ' . $this->settings->entityType . ' number failed, Magento number used: '
                 . $e->getMessage()
             );
             $this->current = (string)$this->fallback->getNextValue();

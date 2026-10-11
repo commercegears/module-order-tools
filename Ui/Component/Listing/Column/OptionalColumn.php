@@ -1,17 +1,17 @@
 <?php
 /**
- * Softaware Order Tools
+ * CommerceGears Order Tools
  *
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  */
 declare(strict_types=1);
 
-namespace Softaware\OrderTools\Ui\Component\Listing\Column;
+namespace CommerceGears\OrderTools\Ui\Component\Listing\Column;
 
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Ui\Component\Listing\Columns\Column;
-use Softaware\OrderTools\Model\Config;
+use CommerceGears\OrderTools\Model\Config;
 
 /**
  * Order grid column that is only there when switched on in the settings (the test order column with the test

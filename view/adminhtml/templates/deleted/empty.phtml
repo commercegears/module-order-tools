@@ -1,22 +1,22 @@
 <?php
 /**
- * Softaware Order Tools
+ * CommerceGears Order Tools
  *
  * Shown instead of the log grid while no order has been deleted.
  *
- * @copyright Copyright (c) Softaware Commerce (https://www.softawarecommerce.co.uk/)
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
  *
  * @var \Magento\Backend\Block\Template $block
  * @var \Magento\Framework\Escaper $escaper
- * @var \Softaware\OrderTools\ViewModel\DeletedLog $viewModel
+ * @var \CommerceGears\OrderTools\ViewModel\DeletedLog $viewModel
  */
 $viewModel = $block->getData('view_model');
 $authorization = $block->getAuthorization();
-$canConfigure = $authorization->isAllowed('Softaware_OrderTools::config');
+$canConfigure = $authorization->isAllowed('CommerceGears_OrderTools::config');
 $canSeeOrders = $authorization->isAllowed('Magento_Sales::sales_order');
 $enabled = $viewModel->isDeleteEnabled();
 $statuses = $viewModel->getDeletableStatusLabels();
-$settingsUrl = $block->getUrl('adminhtml/system_config/edit', ['section' => 'softaware_ordertools']);
+$settingsUrl = $block->getUrl('adminhtml/system_config/edit', ['section' => 'commercegears_ordertools']);
 ?>
 <div class="sot-empty" role="status">
     <h2 class="sot-empty__title"><?= $escaper->escapeHtml(__('No orders have been deleted')) ?></h2>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * CommerceGears Order Tools
+ *
+ * @copyright Copyright (c) CommerceGears (https://www.commercegearscommerce.co.uk/)
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="CommerceGears_OrderTools::css/admin.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magento\Backend\Block\Template" name="commercegears.ordertools.deleted.intro" template="CommerceGears_OrderTools::deleted/intro.phtml" before="-"/>
+            <uiComponent name="commercegears_ordertools_deleted_listing"/>
+        </referenceContainer>
+    </body>
+</page>
