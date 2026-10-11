@@ -143,8 +143,10 @@ and suffix share one counter.
 ### Next Numbers
 
 The **Next Numbers** table shows the next number of each document type for every store view, based on the saved
-settings (save to update it), with the last number used. Custom numbers also need **Order Tools > General >
-Enabled**; the table shows a warning when Order Tools is switched off.
+settings (save to update it). Each cell says where the number comes from: "Custom format" or "Magento numbering"
+(the number Magento's own sequence gives next; orders imported with other numbers do not change it). Showing the
+table never uses up a number. Custom numbers also need **Order Tools > General > Enabled**; the table shows a warning
+when Order Tools is switched off.
 
 ## 5. Order grid columns
 
@@ -234,8 +236,9 @@ bin/magento softaware:order-tools:sequence:show [--store=<id|code>]
 bin/magento softaware:order-tools:grid:backfill [--batch-size=500]
 ```
 
-- `sequence:show` lists the numbering, last number and next number of each document type per store view. It is
-  read-only and does not use up a number.
+- `sequence:show` lists the numbering, last number and next number of each document type per store view (for
+  Magento numbering, the number Magento's sequence gives next, marked "(Magento)"). It is read-only and does not use
+  up a number.
 - `grid:backfill` fills the Order Tools grid columns for existing orders, in batches of 500 by default. Run it once
   after installation.
 

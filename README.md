@@ -89,13 +89,13 @@ orders are easy to find (and, once cancelled, to delete). Off by default.
 | Path | Default | |
 |---|---|---|
 | `softaware_ordertools/general/enabled` | 1 | Master switch for all features |
-| `softaware_ordertools/grid/columns` | – | `sot_items,sot_coupon_code,sot_shipping_country,sot_customer_note` |
+| `softaware_ordertools/grid/columns` | (empty) | `sot_items,sot_coupon_code,sot_shipping_country,sot_customer_note` |
 | `softaware_ordertools/grid/test_flag` | 0 | Test order column and mass actions |
 | `softaware_ordertools/delete/enabled` | 0 | Allow deleting orders |
 | `softaware_ordertools/delete/statuses` | canceled | Comma-separated status codes |
 | `softaware_ordertools/delete/customer_email` | hash | `hash` or `keep` |
 | `softaware_ordertools_numbers/<type>/mode` | default | `default`, `custom`, `order` (not for orders); type = order, invoice, shipment, creditmemo |
-| `softaware_ordertools_numbers/<type>/prefix`, `.../suffix` | – | |
+| `softaware_ordertools_numbers/<type>/prefix`, `.../suffix` | (empty) | |
 | `softaware_ordertools_numbers/<type>/length` | 6 | 1-10 |
 | `softaware_ordertools_numbers/<type>/start`, `.../step` | 1, 1 | |
 | `softaware_ordertools_numbers/<type>/reset` | never | `never`, `yearly`, `monthly` (default scope) |
@@ -119,7 +119,7 @@ Run the backfill once after installation; orders saved later are handled by Mage
 
 ## Compatibility
 
-Magento Open Source / Adobe Commerce 2.4.7–2.4.9, PHP 8.2–8.5. Requires `softaware/module-core` ^1.0.
+Magento Open Source / Adobe Commerce 2.4.7 to 2.4.9, PHP 8.2 to 8.5. Requires `softaware/module-core` ^1.3.
 No storefront code (numbers appear wherever Magento shows them, on Luma and Hyvä alike).
 
 ## Limitations

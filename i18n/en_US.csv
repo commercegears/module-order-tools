@@ -124,4 +124,4 @@ Currency,Currency
 "Open Settings","Open Settings"
 "Every permanently deleted order is recorded here with its number, totals and documents, and who deleted it when. Search finds order numbers, admin users and customer email addresses, also when the email is stored as a hash.","Every permanently deleted order is recorded here with its number, totals and documents, and who deleted it when. Search finds order numbers, admin users and customer email addresses, also when the email is stored as a hash."
 "Order Tools is switched off (Order Tools > General > Enabled), so Magento's own numbers are used.","Order Tools is switched off (Order Tools > General > Enabled), so Magento's own numbers are used."
-"Last used: %1","Last used: %1"
+"Magento numbering","Magento numbering"

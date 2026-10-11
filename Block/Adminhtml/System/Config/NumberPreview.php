@@ -91,13 +91,15 @@ class NumberPreview extends Field
             return $escaper->escapeHtml(__('Not available'));
         }
         if ($next === null) {
-            $last = $this->generator->lastNumber($entityType, $storeId);
-            return '<span class="sot-number-preview__muted">' . $escaper->escapeHtml(__('Magento default')) . '</span>'
-                . ($last !== null
-                    ? '<span class="sot-number-preview__last">' . $escaper->escapeHtml(__('Last used: %1', $last)) . '</span>'
-                    : '');
+            // Magento's own numbering: show the number its sequence gives next.
+            $magentoNext = $this->generator->magentoNextNumber($entityType, $storeId);
+            return ($magentoNext !== null
+                    ? '<strong class="sot-number-preview__next">' . $escaper->escapeHtml($magentoNext) . '</strong>'
+                    : '')
+                . '<span class="sot-number-preview__note">' . $escaper->escapeHtml(__('Magento numbering')) . '</span>';
         }
-        return '<strong class="sot-number-preview__next">' . $escaper->escapeHtml($next) . '</strong>';
+        return '<strong class="sot-number-preview__next">' . $escaper->escapeHtml($next) . '</strong>'
+            . '<span class="sot-number-preview__note">' . $escaper->escapeHtml(__('Custom format')) . '</span>';
     }
 
     /**

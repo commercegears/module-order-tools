@@ -8,12 +8,12 @@
 .sot-empty__actions a + a { margin-left: 1rem; }
 
 /* Next Numbers table (inside the settings form, which pads every td) */
-.sot-number-preview__wrap { overflow-x: auto; }
+.sot-number-preview__wrap { max-width: 100%; }
 .sot-number-preview__notice { margin: 0 0 1.5rem; }
-.accordion .form-inline .config .sot-number-preview { width: 100%; margin: 0; }
+.accordion .form-inline .config .sot-number-preview { width: 100%; margin: 0; table-layout: fixed; }
 .accordion .form-inline .config .sot-number-preview th,
-.accordion .form-inline .config .sot-number-preview td { padding: 1rem; vertical-align: top; text-align: left; }
+.accordion .form-inline .config .sot-number-preview td { padding: 1rem; vertical-align: top; text-align: left; overflow-wrap: anywhere; }
 .accordion .form-inline .config .sot-number-preview tbody th { font-weight: 400; color: #303030; background: transparent; border: 0; border-left: 1px dashed #d6d6d6; border-right: 1px dashed #d6d6d6; }
-.sot-number-preview__next { white-space: nowrap; }
+.sot-number-preview__next { display: block; }
 .sot-number-preview__muted { color: #666; }
-.sot-number-preview__last { display: block; margin-top: .2rem; font-size: 1.2rem; color: #666; white-space: nowrap; }
+.sot-number-preview__note { display: block; margin-top: .2rem; font-size: 1.2rem; color: #666; }

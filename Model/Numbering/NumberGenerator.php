@@ -119,6 +119,44 @@ class NumberGenerator
     /**
      * Last number of this document type in the store view (newest document), or null.
      */
+    /**
+     * The number Magento's own sequence gives the next document of this type and store view (read-only: nothing
+     * is reserved). Null when the store view has no sequence or it cannot be read.
+     */
+    public function magentoNextNumber(string $entityType, int $storeId): ?string
+    {
+        try {
+            $connection = $this->resource->getConnection('sales');
+            $row = $connection->fetchRow(
+                $connection->select()
+                    ->from(['m' => $this->resource->getTableName('sales_sequence_meta')], ['sequence_table'])
+                    ->join(
+                        ['p' => $this->resource->getTableName('sales_sequence_profile')],
+                        'p.meta_id = m.meta_id AND p.is_active = 1',
+                        ['prefix', 'suffix', 'start_value', 'step']
+                    )
+                    ->where('m.entity_type = ?', $entityType)
+                    ->where('m.store_id = ?', $storeId)
+                    ->limit(1)
+            );
+            if (!$row || !preg_match('/^[a-z0-9_]+$/i', (string)$row['sequence_table'])) {
+                return null;
+            }
+            $table = $this->resource->getTableName((string)$row['sequence_table']);
+            // The next value is the table's auto-increment counter (MAX + 1 when the counter cannot be read).
+            $create = (string)($connection->fetchRow('SHOW CREATE TABLE ' . $connection->quoteIdentifier($table))['Create Table'] ?? '');
+            $nextId = preg_match('/AUTO_INCREMENT=(\d+)/', $create, $m)
+                ? (int)$m[1]
+                : (int)$connection->fetchOne($connection->select()->from($table, ['MAX(sequence_value)'])) + 1;
+            $start = (int)$row['start_value'];
+            $value = ($nextId - $start) * (int)$row['step'] + $start;
+            // Same pattern as Magento\SalesSequence\Model\Sequence::DEFAULT_PATTERN.
+            return sprintf("%s%'.09d%s", (string)$row['prefix'], $value, (string)$row['suffix']);
+        } catch (\Throwable) {
+            return null;
+        }
+    }
+
     public function lastNumber(string $entityType, int $storeId): ?string
     {
         if (!isset(self::TABLES[$entityType])) {

@@ -53,7 +53,7 @@ class SequenceShowCommand extends Command
                 $next = match (true) {
                     $settings->isCustom() => (string)$this->generator->preview($settings),
                     $settings->isSameAsOrder() => 'same as the order number',
-                    default => '(Magento)',
+                    default => (string)$this->generator->magentoNextNumber($entityType, (int)$store->getId()) . ' (Magento)',
                 };
                 $table->addRow([
                     $store->getCode() . ' (' . $store->getId() . ')',
