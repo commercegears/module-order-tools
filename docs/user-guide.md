@@ -14,8 +14,8 @@ day-to-day use.
 
 | | |
 | --- | --- |
-| Magento | Open Source or Adobe Commerce 2.4.7 to 2.4.9 |
-| PHP | 8.2 to 8.5 |
+| Magento | Open Source or Adobe Commerce 2.4.6 to 2.4.9 |
+| PHP | 8.2 to 8.5 (Magento 2.4.6: PHP 8.2) |
 | Storefront | None: the module is admin only. The numbers appear wherever Magento shows them, on Luma, Hyvä and other themes alike. |
 | Other | `commercegears/module-core` (installed automatically) |
 
