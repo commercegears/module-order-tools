@@ -22,7 +22,7 @@ day-to-day use.
 ## 2. Installation
 
 Install with Composer from repo.commercegears.com. The access keys are in your account on
-commercegears.com; see [Composer access](https://commercegears.com/shop/composer-access/) for details.
+commercegears.com; see [Composer access](https://commercegears.com/composer-access/) for details.
 
 ```bash
 composer config repositories.commercegears composer https://repo.commercegears.com
